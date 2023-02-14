@@ -201,6 +201,63 @@ async def edit_label(data: EditLabel, did: int, label_index: int, access_token: 
     return {'response': 'success'}
 
 
+@desk_app.patch('/id{did}/column{cid}/card{card_index}/move')
+async def move_column(
+        did: int,
+        cid: int,
+        card_index: int,
+        new_cid: int,
+        new_card_index: int,
+        access_token: str
+):
+    """
+    Moves column in desk
+
+    :param did: desk ID
+    :param cid: Column ID
+    :param card_index: Card index in column
+    :param new_card_index: New card index in column
+    :param new_cid: new column ID
+    :param access_token: user access_token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    d = desk.find_one({'did': did})
+    if d is None:
+        return Error.DeskIsNotExists
+    if d['author'] != u['uid']:
+        return Error.AccessDenied
+    if cid < 0 or cid >= len(d['columns']):
+        return Error.IndexError
+    if new_cid < 0 or new_cid >= len(d['columns']):
+        return Error.IndexError
+    c = list(filter(lambda x: x['cid'] == cid, d['columns']))[0]
+    new_c = list(filter(lambda x: x['cid'] == new_cid, d['columns']))[0]
+    if card_index < 0 or card_index >= len(c['cards']):
+        return Error.IndexError
+    if new_card_index < 0 or new_card_index > len(new_c['cards']):
+        return Error.IndexError
+    card = c['cards'][card_index]
+    desk.update_one(
+        {'did': did, 'columns.cid': cid},
+        {'$unset': {f'columns.$.cards.{card_index}': 1}}
+    )
+    desk.update_one(
+        {'did': did, 'columns.cid': cid},
+        {'$pull': {f'columns.$.cards': {'$eq': None}}}
+    )
+    desk.update_one(
+        {'did': did, 'columns.cid': new_cid},
+        {'$push': {'columns.$.cards': {
+            '$each': [card],
+            '$position': new_card_index
+        }}}
+    )
+    d = desk.find_one({'did': did})
+    return {'response': DeskModel(**d)}
+
+
 @desk_app.patch('/id{did}/column{cid}/move')
 async def move_column(did: int, cid: int, new_cid: int, access_token: str):
     """

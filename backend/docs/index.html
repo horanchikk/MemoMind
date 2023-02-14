@@ -186,6 +186,10 @@
               
             
               
+                <a href="#move_column" class="indent-4 truncate search-header">- move column</a>
+              
+            
+              
                 <a href="#edit_desk_by_id" class="indent-4 truncate search-header">- edit desk by id</a>
               
             
@@ -2057,6 +2061,222 @@
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="move_column" class="cursor-pointer select-none">move column</span>
                   
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      Moves column in desk
+                    </div>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            did <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>desk ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            cid <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>Column ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            card_index <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>Card index in column</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            new_cid <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>new column ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            new_card_index <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>New card index in column</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td>user access_token</td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_move_column"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH desk/id{did}/column{cid}/card{card_index}/move HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_did"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_did"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              did
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_cid"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_cid"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              cid
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_card_index"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_card_index"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              card_index
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_new_cid"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_new_cid"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              new_cid
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_new_card_index"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_new_card_index"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              new_card_index
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'did': document.getElementById('input_move_column_did').value,
+                                      
+                                      'cid': document.getElementById('input_move_column_cid').value,
+                                      
+                                      'card_index': document.getElementById('input_move_column_card_index').value,
+                                      
+                                      'new_cid': document.getElementById('input_move_column_new_cid').value,
+                                      
+                                      'new_card_index': document.getElementById('input_move_column_new_card_index').value,
+                                      
+                                      'access_token': document.getElementById('input_move_column_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_move_column', 'PATCH desk/id{did}/column{cid}/card{card_index}/move HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 575ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="move_column" class="cursor-pointer select-none">move column</span>
+                  
                 </div>
                 <div class="flex flex-col gap-4 w-2/3 h-full">
                   <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
@@ -2210,7 +2430,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 575ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 600ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="move_column" class="cursor-pointer select-none">move column</span>
                   
@@ -2367,7 +2587,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 600ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 625ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_desk_by_id" class="cursor-pointer select-none">edit desk by id</span>
                   
