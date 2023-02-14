@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from ..database import user
 from ..exceptions import Error
-from ..models import SignUpUser, LogInUser
+from ..models import SignUpUser, LogInUser, EditUserProfile, UserModel
 from ..utils import get_body
 
 user_app = FastAPI()
@@ -20,7 +20,8 @@ async def check_request(req: Request, call_next):
             u = user.find_one({'access_token': req.query_params['access_token']})
             if u is None:
                 return Error.AccessDenied
-        return Error.AccessDenied
+        else:
+            return Error.AccessDenied
     return await call_next(req)
 
 
@@ -62,6 +63,33 @@ async def log_in_user(data: LogInUser):
     """
     Logs in user account.
     """
+    u = user.find_one({'login': data.login})
+    if u is None:
+        return Error.UserIsNotExists
+    if not check_password_hash(data.password, u['password']):
+        return Error.LoginOrPasswordIsNotCorrect
+    return {'response': {
+        'access_token': u['access_token']
+    }}
+
+
+@user_app.patch('/edit')
+async def edit_user_profile(data: EditUserProfile, access_token: str):
+    """
+    Edits user profile
+    """
+    u = user.find_one({'access_token': access_token})
+    if check_password_hash(data.old_password, u['password']):
+        return Error.PasswordIsNotCorrect
+    token = token_hex(32)
+    user.update_one(
+        {'access_token': access_token},
+        {'$set': {
+            'password': generate_password_hash(data.new_password),
+            'access_token': token
+        }}
+    )
+    return {'response': {'access_token': token}}
 
 
 @user_app.get('/id{uid}')
@@ -72,4 +100,7 @@ async def get_user_by_id(uid: int):
     u = user.find_one({'uid': uid})
     if u is None:
         return Error.UserIsNotExists
+    u = UserModel(**u).dict()
+    del u['access_token']
+    del u['password']
     return {'response': u}

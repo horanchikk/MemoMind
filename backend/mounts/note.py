@@ -6,7 +6,7 @@ from fastapi import FastAPI, Request
 from ..exceptions import Error
 from ..utils import get_body
 from ..database import note, user
-from ..models import EditNote, CreateNote
+from ..models import EditNote, CreateNote, NoteModel
 
 note_app = FastAPI()
 
@@ -19,7 +19,8 @@ async def check_request(req: Request, call_next):
             u = user.find_one({'access_token': req.query_params['access_token']})
             if u is None:
                 return Error.AccessDenied
-        return Error.AccessDenied
+        else:
+            return Error.AccessDenied
     return await call_next(req)
 
 
@@ -61,4 +62,4 @@ async def get_note_by_id(nid: int, access_token: str = ''):
         return Error.NoteIsNotExists
     if n['author'] != u['uid']:
         return Error.AccessDenied
-    return {'response': n}
+    return {'response': NoteModel(**n)}

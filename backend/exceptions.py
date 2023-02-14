@@ -16,3 +16,5 @@ class Error:
     EmailWasUsed = error("This email is used", status.HTTP_409_CONFLICT)
     LoginWasUsed = error("This login is used", status.HTTP_409_CONFLICT)
     AccessDenied = error("Access denied", status.HTTP_403_FORBIDDEN)
+    LoginOrPasswordIsNotCorrect = error("Login or password is not correct.", status.HTTP_400_BAD_REQUEST)
+    PasswordIsNotCorrect = error("Password is not correct", status.HTTP_400_BAD_REQUEST)
