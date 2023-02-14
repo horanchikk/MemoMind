@@ -1,0 +1,15 @@
+# directories
+node_modules/
+.idea/
+__pycache__/
+
+
+# binaries
+*.exe
+
+# logs
+*.log
+*.lg
+
+# compiled
+*.pyc
