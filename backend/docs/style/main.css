@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+}
+*::-webkit-scrollbar-track {
+    background-color: #ffffff20;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: pink;
+    border-radius: 25px;
+}
+
+code {
+    background-color: #182e34;
+    padding: 8px;
+    border-radius: 6px;
+    font-family: 'PT Mono', monospace;
+}
+code::selection {
+    background-color: #cd658d50;
+    border-radius: 2px;
+}
+
+.method {
+    user-select: none;
+}
+
+td {
+    border-width: 0.5px;
+    border-color: #ffffff30;
+    padding: 4px;
+}
+
+
+@keyframes title-on-load-anim {
+    0% {
+        transform: translateY(-25px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes method-on-load-anim {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes sidebar-on-load-anim {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes sidebar-mobile-on-load-anim {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.title-on-load {
+    animation: title-on-load-anim .25s ease-in-out;
+}
+
+.method-on-load {
+    animation: method-on-load-anim .35s ease-in-out;
+    animation-fill-mode: both;
+}
+
+@media screen and (max-width: 640px) {
+    .sidebar-on-load {
+        animation: sidebar-mobile-on-load-anim .5s ease-in-out .15s;
+        animation-fill-mode: both;
+    }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1280px) {
+    .sidebar-on-load {
+        animation: sidebar-on-load-anim .5s ease-in-out .15s;
+        animation-fill-mode: both;
+    }
+}
+
+@media screen and (min-width: 1281px) {
+    .sidebar-on-load {
+        animation: sidebar-on-load-anim .5s ease-in-out .15s;
+        animation-fill-mode: both;
+    }
+}

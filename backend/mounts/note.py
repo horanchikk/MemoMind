@@ -64,3 +64,24 @@ async def get_note_by_id(nid: int, access_token: str = ''):
     if n['author'] != u['uid']:
         return Error.AccessDenied
     return {'response': NoteModel(**n)}
+
+
+@note_app.patch('/id{nid}')
+async def edit_note(data: EditNote, nid: int, access_token: str):
+    """
+    Edits note
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.UserIsNotExists
+    n = note.find_one({'nid': nid})
+    if n is None:
+        return Error.NoteIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    n = NoteModel(**n)
+    note.update_one({'nid': nid}, {'$set': {
+        'title': data.title if data.title else n.title,
+        'data': data.data,
+        'gradient': data.gradient
+    }})

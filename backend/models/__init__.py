@@ -25,11 +25,10 @@ class CreateNote(BaseModel):
 
 
 class EditNote(BaseModel):
-    id: int
-    title: str
+    title: str = ''
     data: str
     cover: str
-    gradient: list[str]
+    gradient: list[str] = []
     use_cover: bool
 
 
