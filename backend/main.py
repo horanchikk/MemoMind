@@ -6,7 +6,7 @@ from fastapi import FastAPI, status
 from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-from .mounts import user_app, note_app
+from .mounts import user_app, note_app, desk_app
 from .docs.autodocs import AutoDocs
 from .config import DOCS_EXCEPTIONS, DOCS_ROOT, DOCS_TITLE, DOCS_MOUNTS, DOCS_MODELS
 
@@ -23,6 +23,7 @@ DOCS_FILE = f'{DOCS_ROOT}/index.html'
 
 app.mount('/user', user_app)
 app.mount('/note', note_app)
+app.mount('/desk', desk_app)
 
 AutoDocs.generate(
     root=f'{DOCS_ROOT}/',

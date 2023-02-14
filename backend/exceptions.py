@@ -13,8 +13,11 @@ def error(message: dict, status_code: int = status.HTTP_404_NOT_FOUND) -> JSONRe
 class Error:
     NoteIsNotExists = error("This note is not exists", status.HTTP_404_NOT_FOUND)
     UserIsNotExists = error("This user is not exists", status.HTTP_404_NOT_FOUND)
+    DeskIsNotExists = error("This desk is not exists", status.HTTP_404_NOT_FOUND)
     EmailWasUsed = error("This email is used", status.HTTP_409_CONFLICT)
     LoginWasUsed = error("This login is used", status.HTTP_409_CONFLICT)
     AccessDenied = error("Access denied", status.HTTP_403_FORBIDDEN)
     LoginOrPasswordIsNotCorrect = error("Login or password is not correct.", status.HTTP_400_BAD_REQUEST)
     PasswordIsNotCorrect = error("Password is not correct", status.HTTP_400_BAD_REQUEST)
+    IndexError = error("Index error", status.HTTP_400_BAD_REQUEST)
+    TitleIsEmpty = error("Title is empty", status.HTTP_400_BAD_REQUEST)
