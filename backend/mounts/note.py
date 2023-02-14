@@ -41,7 +41,8 @@ async def create_new_note(data: CreateNote, access_token: str):
         'created_at': time(),
         'edited_at': -1,
     }
-    user.update_one({'uid': u.uid}, {'$push': {'notes': new_note}})
+    user.update_one({'uid': u['uid']}, {'$push': {'notes': nid}})
+    note.insert_one(new_note)
     return {'response': {
         'id': nid
     }}
