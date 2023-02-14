@@ -49,6 +49,8 @@ async def create_new_user(data: SignUpUser):
         'email': data.email,
         'notes': [],
         'desks': [],
+        'notes_favorite': [],
+        'desks_favorite': [],
         'notes_trash': [],
         'desks_trash': [],
     })

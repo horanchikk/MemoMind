@@ -84,6 +84,8 @@ class UserModel(BaseModel):
     access_token: str
     notes: list[int]
     desks: list[int]
+    notes_favorite: list[int]
+    desks_favorite: list[int]
     notes_trash: list[int]
     desks_trash: list[int]
 
