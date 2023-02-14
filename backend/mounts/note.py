@@ -83,5 +83,8 @@ async def edit_note(data: EditNote, nid: int, access_token: str):
     note.update_one({'nid': nid}, {'$set': {
         'title': data.title if data.title else n.title,
         'data': data.data,
-        'gradient': data.gradient
+        'gradient': data.gradient,
+        'cover': data.cover,
+        'edited_at': time()
     }})
+    return {'response': 'success'}

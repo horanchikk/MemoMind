@@ -29,7 +29,6 @@ class EditNote(BaseModel):
     data: str
     cover: str
     gradient: list[str] = []
-    use_cover: bool
 
 
 class UserModel(BaseModel):
