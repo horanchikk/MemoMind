@@ -5,7 +5,7 @@ from ..exceptions import Error
 from ..models import (
     DeskModel, DeskCardModel, DeskCardLabelModel,
     DeskColumnModel, CreateDesk, CreateLabel,
-    CreateColumn, CreateColumnCard, EditDesk, EditLabel
+    CreateColumn, CreateColumnCard, EditDesk, EditLabel, EditColumn
 )
 from ..database import (
     user, desk
@@ -143,7 +143,7 @@ async def get_label_by_label_index(did: int, label_index: int, access_token: str
 
 
 @desk_app.get('/id{did}/column{column_index}')
-async def get_label_by_label_index(did: int, column_index: int, access_token: str):
+async def get_column_by_column_index(did: int, column_index: int, access_token: str):
     """
     Finds column by desk ID and label_index
     """
@@ -201,7 +201,7 @@ async def edit_label(data: EditLabel, did: int, label_index: int, access_token: 
     return {'response': 'success'}
 
 
-@desk_app.patch('/id{did}/column{cid}')
+@desk_app.patch('/id{did}/column{cid}/move')
 async def move_column(did: int, cid: int, new_cid: int, access_token: str):
     """
     Moves column in desk
@@ -232,6 +232,30 @@ async def move_column(did: int, cid: int, new_cid: int, access_token: str):
     )
     d = desk.find_one({'did': did})
     return {'response': DeskModel(**d)}
+
+
+@desk_app.patch('/id{did}/column{cid}')
+async def move_column(data: EditColumn, did: int, cid: int, access_token: str):
+    """
+    Edits column in desk
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    d = desk.find_one({'did': did})
+    if d is None:
+        return Error.DeskIsNotExists
+    if d['author'] != u['uid']:
+        return Error.AccessDenied
+    if cid < 0 or cid >= len(d['columns']):
+        return Error.IndexError
+    if not data.title:
+        return Error.TitleIsEmpty
+    desk.update_one(
+        {'did': did, 'columns.cid': cid},
+        {'$set': {'columns.$.title': data.title}}
+    )
+    return {'response': 'success'}
 
 
 @desk_app.patch('/id{did}')

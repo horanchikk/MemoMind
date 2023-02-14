@@ -44,6 +44,10 @@ class EditLabel(BaseModel):
     color: str
 
 
+class EditColumn(BaseModel):
+    title: str
+
+
 class CreateLabel(BaseModel):
     did: int
     title: str

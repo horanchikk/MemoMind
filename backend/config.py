@@ -14,6 +14,7 @@ DOCS_MOUNTS = [
     # ('/path/in/api', 'path/to/mount.py')
     ('user', '../mounts/user.py'),
     ('note', '../mounts/note.py'),
+    ('desk', '../mounts/desk.py'),
 ]
 DOCS_EXCEPTIONS = [
     # 'path/to/exceptions/file.py'

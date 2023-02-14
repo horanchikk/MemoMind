@@ -124,6 +124,71 @@
                 <a href="#edit_note" class="indent-4 truncate search-header">- edit note</a>
               
             
+              
+                <div class="flex justify-between w-full select-none" onclick="toggleSearchHeader('desk')">
+                  <a href="#desk">- desk</a>
+                  <svg
+                    class="fill-fore cursor-pointer hover:scale-105 active:scale-95 transition-all desk-arrow-down"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 320 512"
+                    width="24"
+                    height="24"
+                    style="transform: rotate(180deg)"
+                  >
+                    <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/>
+                  </svg>
+                </div>
+              
+            
+              
+                <a href="#check_request" class="indent-4 truncate search-header">- </a>
+              
+            
+              
+                <a href="#create_new" class="indent-4 truncate search-header">- create new</a>
+              
+            
+              
+                <a href="#create_new_label" class="indent-4 truncate search-header">- create new label</a>
+              
+            
+              
+                <a href="#create_new_column" class="indent-4 truncate search-header">- create new column</a>
+              
+            
+              
+                <a href="#create_column_card" class="indent-4 truncate search-header">- create column card</a>
+              
+            
+              
+                <a href="#get_label_by_label_index" class="indent-4 truncate search-header">- get label by label index</a>
+              
+            
+              
+                <a href="#get_column_by_column_index" class="indent-4 truncate search-header">- get column by column index</a>
+              
+            
+              
+                <a href="#get_desk_by_id" class="indent-4 truncate search-header">- get desk by id</a>
+              
+            
+              
+                <a href="#edit_label" class="indent-4 truncate search-header">- edit label</a>
+              
+            
+              
+                <a href="#move_column" class="indent-4 truncate search-header">- move column</a>
+              
+            
+              
+                <a href="#move_column" class="indent-4 truncate search-header">- move column</a>
+              
+            
+              
+                <a href="#edit_desk_by_id" class="indent-4 truncate search-header">- edit desk by id</a>
+              
+            
           </div>
         </div>
         <!-- Methods list -->
@@ -961,6 +1026,1468 @@
                                     }, {
                                       
                                     }, 'result_edit_note', 'PATCH note/id{nid} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <div
+                id="desk"
+                class="flex w-full font-black justify-center desktop:text-5xl tablet:text-4xl mobile:text-3xl method-on-load py-4"
+                style="animation-delay: 300ms"
+              >
+                # desk
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 325ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="check_request" class="cursor-pointer select-none"></span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            req <span class="text-sm text-green-200">Request</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_check_request"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >MIDDLEWARE deskhttp HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_check_request_req"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_check_request_req"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              req
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'req': document.getElementById('input_check_request_req').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_check_request', 'MIDDLEWARE deskhttp HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 350ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="create_new" class="cursor-pointer select-none">create new</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            data <span class="text-sm text-green-200">CreateDesk</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_create_new"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >POST desk/ HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_create_new_data"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_create_new_data"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              data
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_create_new_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_create_new_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'data': document.getElementById('input_create_new_data').value,
+                                      
+                                      'access_token': document.getElementById('input_create_new_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_create_new', 'POST desk/ HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 375ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="create_new_label" class="cursor-pointer select-none">create new label</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            data <span class="text-sm text-green-200">CreateLabel</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_create_new_label"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >POST desk/label HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_create_new_label_data"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_create_new_label_data"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              data
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_create_new_label_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_create_new_label_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'data': document.getElementById('input_create_new_label_data').value,
+                                      
+                                      'access_token': document.getElementById('input_create_new_label_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_create_new_label', 'POST desk/label HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 400ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="create_new_column" class="cursor-pointer select-none">create new column</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            data <span class="text-sm text-green-200">CreateColumn</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_create_new_column"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >POST desk/column HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_create_new_column_data"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_create_new_column_data"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              data
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_create_new_column_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_create_new_column_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'data': document.getElementById('input_create_new_column_data').value,
+                                      
+                                      'access_token': document.getElementById('input_create_new_column_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_create_new_column', 'POST desk/column HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 425ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="create_column_card" class="cursor-pointer select-none">create column card</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            data <span class="text-sm text-green-200">CreateColumnCard</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_create_column_card"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >POST desk/column-card HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_create_column_card_data"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_create_column_card_data"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              data
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_create_column_card_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_create_column_card_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'data': document.getElementById('input_create_column_card_data').value,
+                                      
+                                      'access_token': document.getElementById('input_create_column_card_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_create_column_card', 'POST desk/column-card HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 450ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="get_label_by_label_index" class="cursor-pointer select-none">get label by label index</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            did <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            label_index <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_get_label_by_label_index"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >GET desk/id{did}/label{label_index} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_get_label_by_label_index_did"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_get_label_by_label_index_did"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              did
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_get_label_by_label_index_label_index"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_get_label_by_label_index_label_index"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              label_index
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_get_label_by_label_index_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_get_label_by_label_index_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'did': document.getElementById('input_get_label_by_label_index_did').value,
+                                      
+                                      'label_index': document.getElementById('input_get_label_by_label_index_label_index').value,
+                                      
+                                      'access_token': document.getElementById('input_get_label_by_label_index_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_get_label_by_label_index', 'GET desk/id{did}/label{label_index} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 475ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="get_column_by_column_index" class="cursor-pointer select-none">get column by column index</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            did <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            column_index <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_get_column_by_column_index"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >GET desk/id{did}/column{column_index} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_get_column_by_column_index_did"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_get_column_by_column_index_did"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              did
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_get_column_by_column_index_column_index"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_get_column_by_column_index_column_index"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              column_index
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_get_column_by_column_index_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_get_column_by_column_index_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'did': document.getElementById('input_get_column_by_column_index_did').value,
+                                      
+                                      'column_index': document.getElementById('input_get_column_by_column_index_column_index').value,
+                                      
+                                      'access_token': document.getElementById('input_get_column_by_column_index_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_get_column_by_column_index', 'GET desk/id{did}/column{column_index} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 500ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="get_desk_by_id" class="cursor-pointer select-none">get desk by id</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            did <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_get_desk_by_id"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >GET desk/id{did} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_get_desk_by_id_did"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_get_desk_by_id_did"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              did
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_get_desk_by_id_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_get_desk_by_id_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'did': document.getElementById('input_get_desk_by_id_did').value,
+                                      
+                                      'access_token': document.getElementById('input_get_desk_by_id_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_get_desk_by_id', 'GET desk/id{did} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 525ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="edit_label" class="cursor-pointer select-none">edit label</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            data <span class="text-sm text-green-200">EditLabel</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            did <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            label_index <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_edit_label"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH desk/id{did}/label{label_index} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_edit_label_data"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_edit_label_data"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              data
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_edit_label_did"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_edit_label_did"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              did
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_edit_label_label_index"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_edit_label_label_index"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              label_index
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_edit_label_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_edit_label_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'data': document.getElementById('input_edit_label_data').value,
+                                      
+                                      'did': document.getElementById('input_edit_label_did').value,
+                                      
+                                      'label_index': document.getElementById('input_edit_label_label_index').value,
+                                      
+                                      'access_token': document.getElementById('input_edit_label_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_edit_label', 'PATCH desk/id{did}/label{label_index} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 550ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="move_column" class="cursor-pointer select-none">move column</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            did <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            cid <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            new_cid <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_move_column"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH desk/id{did}/column{cid}/move HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_did"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_did"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              did
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_cid"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_cid"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              cid
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_new_cid"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_new_cid"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              new_cid
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'did': document.getElementById('input_move_column_did').value,
+                                      
+                                      'cid': document.getElementById('input_move_column_cid').value,
+                                      
+                                      'new_cid': document.getElementById('input_move_column_new_cid').value,
+                                      
+                                      'access_token': document.getElementById('input_move_column_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_move_column', 'PATCH desk/id{did}/column{cid}/move HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 575ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="move_column" class="cursor-pointer select-none">move column</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            data <span class="text-sm text-green-200">EditColumn</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            did <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            cid <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_move_column"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH desk/id{did}/column{cid} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_data"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_data"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              data
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_did"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_did"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              did
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_cid"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_cid"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              cid
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_move_column_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_move_column_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'data': document.getElementById('input_move_column_data').value,
+                                      
+                                      'did': document.getElementById('input_move_column_did').value,
+                                      
+                                      'cid': document.getElementById('input_move_column_cid').value,
+                                      
+                                      'access_token': document.getElementById('input_move_column_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_move_column', 'PATCH desk/id{did}/column{cid} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 600ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="edit_desk_by_id" class="cursor-pointer select-none">edit desk by id</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            data <span class="text-sm text-green-200">EditDesk</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            did <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_edit_desk_by_id"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH desk/id{did} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_edit_desk_by_id_data"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_edit_desk_by_id_data"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              data
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_edit_desk_by_id_did"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_edit_desk_by_id_did"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              did
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_edit_desk_by_id_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_edit_desk_by_id_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'data': document.getElementById('input_edit_desk_by_id_data').value,
+                                      
+                                      'did': document.getElementById('input_edit_desk_by_id_did').value,
+                                      
+                                      'access_token': document.getElementById('input_edit_desk_by_id_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_edit_desk_by_id', 'PATCH desk/id{did} HTTP/1.1', 'http://localhost:8000')"
                   >
                     send
                   </div>
