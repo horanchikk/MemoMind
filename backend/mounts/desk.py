@@ -5,7 +5,7 @@ from ..exceptions import Error
 from ..models import (
     DeskModel, DeskCardModel, DeskCardLabelModel,
     DeskColumnModel, CreateDesk, CreateLabel,
-    CreateColumn, CreateColumnCard, EditDesk, EditLabel, EditColumn
+    CreateColumn, CreateColumnCard, EditDesk, EditLabel, EditColumn, EditCard
 )
 from ..database import (
     user, desk
@@ -202,7 +202,7 @@ async def edit_label(data: EditLabel, did: int, label_index: int, access_token: 
 
 
 @desk_app.patch('/id{did}/column{cid}/card{card_index}/move')
-async def move_column(
+async def move_card(
         did: int,
         cid: int,
         card_index: int,
@@ -211,7 +211,7 @@ async def move_column(
         access_token: str
 ):
     """
-    Moves column in desk
+    Moves card in desk
 
     :param did: desk ID
     :param cid: Column ID
@@ -258,6 +258,50 @@ async def move_column(
     return {'response': DeskModel(**d)}
 
 
+@desk_app.patch('/id{did}/column{cid}/card{card_index}')
+async def edit_card(
+        data: EditCard,
+        did: int,
+        cid: int,
+        card_index: int,
+        access_token: str
+):
+    """
+    Edits card in desk
+
+    :param data: edit card data
+    :param did: desk ID
+    :param cid: Column ID
+    :param card_index: Card index in column
+    :param access_token: user access_token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    d = desk.find_one({'did': did})
+    if d is None:
+        return Error.DeskIsNotExists
+    if d['author'] != u['uid']:
+        return Error.AccessDenied
+    if cid < 0 or cid >= len(d['columns']):
+        return Error.IndexError
+    c = list(filter(lambda x: x['cid'] == cid, d['columns']))[0]
+    if card_index < 0 or card_index >= len(c['cards']):
+        return Error.IndexError
+    if not data.title:
+        return Error.TitleIsEmpty
+    desk.update_one(
+        {'did': did, 'columns.cid': cid},
+        {'$set': {
+            f'columns.$.cards.{card_index}.title': data.title,
+            f'columns.$.cards.{card_index}.description': data.description,
+            f'columns.$.cards.{card_index}.labels': data.labels,
+            f'columns.$.cards.{card_index}.properties': data.properties,
+        }},
+    )
+    return {'response': 'success'}
+
+
 @desk_app.patch('/id{did}/column{cid}/move')
 async def move_column(did: int, cid: int, new_cid: int, access_token: str):
     """
@@ -292,7 +336,7 @@ async def move_column(did: int, cid: int, new_cid: int, access_token: str):
 
 
 @desk_app.patch('/id{did}/column{cid}')
-async def move_column(data: EditColumn, did: int, cid: int, access_token: str):
+async def edit_column(data: EditColumn, did: int, cid: int, access_token: str):
     """
     Edits column in desk
     """

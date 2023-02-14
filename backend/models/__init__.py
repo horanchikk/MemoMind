@@ -54,6 +54,13 @@ class CreateLabel(BaseModel):
     color: str
 
 
+class EditCard(BaseModel):
+    title: str
+    description: str
+    labels: list[int]
+    properties: list[dict[str, object]]
+
+
 class CreateColumn(BaseModel):
     did: int
     title: str

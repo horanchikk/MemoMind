@@ -38,6 +38,7 @@ async def create_new_note(data: CreateNote, access_token: str):
         'data': '',
         'cover': '',
         'gradient': [''],
+        'public': '',
         'created_at': time(),
         'edited_at': -1,
     }
@@ -61,7 +62,7 @@ async def get_note_by_id(nid: int, access_token: str = ''):
     n = note.find_one({'nid': nid})
     if n is None:
         return Error.NoteIsNotExists
-    if n['author'] != u['uid']:
+    if not n['public'] and n['author'] != u['uid']:
         return Error.AccessDenied
     return {'response': NoteModel(**n)}
 
@@ -88,3 +89,36 @@ async def edit_note(data: EditNote, nid: int, access_token: str):
         'edited_at': time()
     }})
     return {'response': 'success'}
+
+
+@note_app.patch('/share')
+async def share_note(note_id: int, access_token: str, note_name: str):
+    """
+    Shares the note for public view. length of `note_name` should be larger than 6 symbols
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = note.find_one({'nid': note_id})
+    if n is None:
+        return Error.NoteIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    n = note.find_one({'public': note_name})
+    if n is not None:
+        return Error.NoteNameIsExits
+    if note_name.startswith('id'):
+        return Error.NoteCantStartsWithId
+    note.update_one({'nid': note_id}, {'$set': {'public': note_name}})
+    return {'response': 'success'}
+
+
+@note_app.get('/{note_name}')
+async def get_note_by_id(note_name: str):
+    """
+    Finds note by its ID
+    """
+    n = note.find_one({'public': note_name})
+    if n is None:
+        return Error.NoteIsNotExists
+    return {'response': NoteModel(**n)}
