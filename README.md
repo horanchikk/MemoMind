@@ -1,6 +1,6 @@
 <div align="center">
 
-# voluntrix
+# MemoMind
 Ещё один проект на хакатон ♥
 
 </div>
