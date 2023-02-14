@@ -3,44 +3,51 @@
 Provides working with users.
 
 User:
-    id [integer]
+    uid [integer]
     first name [string]
     last name [string]
+    login [string]
     email [string]
     password [string]
+    access_token [string]
     notes [array of IDs]
     desks [array of IDs]
+    notes_trash [array of IDs]
+    desks_trash [array of IDs]
 Note:
-    id [integer]
+    nid [integer]
+    author [integer]
     title [string]
     data [string]  # stores in markdown format
     cover [string]  # path to cover file
     gradient [array]  # aray of HEX colors
-    use_cover [bool]
+    created_at [integer]
+    edited_at [integer]
 Desk:
-    id [integer]
+    did [integer]
+    author [integer]
     title [string]
     columns [array of IDs]
 DeskColumn:
-    id [integer]
+    did [integer]
     title [string]
     cards [array of IDs]
 DeskCard:
-    id [integer]
+    did [integer]
     title [string]
     description [string]
     label [array od IDs]
     properties [array of IDs]
 DeskCardLabel:
-    id [integer]
+    did [integer]
     title [string]
     color [string]  # HEX string
 DeskProperty:
-    id [integer]
+    pid [integer]
     ptype [integer]  # ID of property type
     object [object]  # object data
 PropertyType:
-    id [integer]
+    pid [integer]
     title [string]
 """
 
