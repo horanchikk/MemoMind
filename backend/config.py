@@ -1,5 +1,5 @@
 DOCS_ROOT = './backend/docs'
-DOCS_TITLE = 'Voluntix API Docs'
+DOCS_TITLE = 'MemoMind API Docs'
 DOCS_MODELS = [
     # ('ModelName', 'path/to/model.py')
     ('UserModel', '../models/__init__.py'),
