@@ -39,6 +39,11 @@ class EditDesk(BaseModel):
     title: str
 
 
+class EditLabel(BaseModel):
+    title: str
+    color: str
+
+
 class CreateLabel(BaseModel):
     did: int
     title: str

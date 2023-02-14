@@ -5,7 +5,7 @@ from ..exceptions import Error
 from ..models import (
     DeskModel, DeskCardModel, DeskCardLabelModel,
     DeskColumnModel, CreateDesk, CreateLabel,
-    CreateColumn, CreateColumnCard, EditDesk
+    CreateColumn, CreateColumnCard, EditDesk, EditLabel
 )
 from ..database import (
     user, desk
@@ -172,6 +172,33 @@ async def get_desk_by_id(did: int, access_token: str):
     if d is None:
         return Error.DeskIsNotExists
     return {'response': DeskModel(**d)}
+
+
+@desk_app.patch('/id{did}/label{label_index}')
+async def edit_label(data: EditLabel, did: int, label_index: int, access_token: str):
+    """
+    Moves column in desk
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    d = desk.find_one({'did': did})
+    if d is None:
+        return Error.DeskIsNotExists
+    if d['author'] != u['uid']:
+        return Error.AccessDenied
+    if label_index < 0 or label_index >= len(d['labels']):
+        return Error.IndexError
+    desk.update_one(
+        {'did': did},
+        {'$set': {
+            f'labels.{label_index}': {
+                'title': data.title,
+                'color': data.color
+            }
+        }}
+    )
+    return {'response': 'success'}
 
 
 @desk_app.patch('/id{did}/column{cid}')
