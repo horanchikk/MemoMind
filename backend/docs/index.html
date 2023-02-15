@@ -133,19 +133,19 @@
               
             
               
-                <a href="#add_note_to_favorite" class="indent-4 truncate search-header">- add note to favorite</a>
+                <a href="#add_favorite_note" class="indent-4 truncate search-header">- add favorite note</a>
               
             
               
-                <a href="#add_note_to_favorite" class="indent-4 truncate search-header">- add note to favorite</a>
+                <a href="#delete_note" class="indent-4 truncate search-header">- delete note</a>
               
             
               
-                <a href="#add_note_to_favorite" class="indent-4 truncate search-header">- add note to favorite</a>
+                <a href="#restore_note" class="indent-4 truncate search-header">- restore note</a>
               
             
               
-                <a href="#get_note_by_id" class="indent-4 truncate search-header">- get note by id</a>
+                <a href="#get_public_note" class="indent-4 truncate search-header">- get public note</a>
               
             
               
@@ -219,6 +219,30 @@
             
               
                 <a href="#edit_desk_by_id" class="indent-4 truncate search-header">- edit desk by id</a>
+              
+            
+              
+                <a href="#share_note" class="indent-4 truncate search-header">- share note</a>
+              
+            
+              
+                <a href="#unshare_note" class="indent-4 truncate search-header">- unshare note</a>
+              
+            
+              
+                <a href="#add_desk_to_fav" class="indent-4 truncate search-header">- add desk to fav</a>
+              
+            
+              
+                <a href="#delete_desk" class="indent-4 truncate search-header">- delete desk</a>
+              
+            
+              
+                <a href="#restore_desk_from_trash" class="indent-4 truncate search-header">- restore desk from trash</a>
+              
+            
+              
+                <a href="#get_public_desk" class="indent-4 truncate search-header">- get public desk</a>
               
             
           </div>
@@ -1307,7 +1331,7 @@
               <!-- Method description -->
               <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 350ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
-                  <span id="add_note_to_favorite" class="cursor-pointer select-none">add note to favorite</span>
+                  <span id="add_favorite_note" class="cursor-pointer select-none">add favorite note</span>
                   
                     <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
                     <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
@@ -1342,7 +1366,7 @@
                     
                   </div>
                   <pre><code
-                      id="result_add_note_to_favorite"
+                      id="result_add_favorite_note"
                       class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
                     >PATCH note/favorite HTTP/1.1</code></pre>
                   <div class="flex">
@@ -1353,12 +1377,12 @@
                           <div class="relative group">
                             <input
                               type="text"
-                              id="input_add_note_to_favorite_note_id"
+                              id="input_add_favorite_note_note_id"
                               required
                               class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
                             >
                             <label
-                              for="input_add_note_to_favorite_note_id"
+                              for="input_add_favorite_note_note_id"
                               class="transform transition-all absolute top-0 left-0 h-full flex items-center
                                     pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
                                     peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
@@ -1371,12 +1395,12 @@
                           <div class="relative group">
                             <input
                               type="text"
-                              id="input_add_note_to_favorite_access_token"
+                              id="input_add_favorite_note_access_token"
                               required
                               class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
                             >
                             <label
-                              for="input_add_note_to_favorite_access_token"
+                              for="input_add_favorite_note_access_token"
                               class="transform transition-all absolute top-0 left-0 h-full flex items-center
                                     pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
                                     peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
@@ -1397,13 +1421,13 @@
                     class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
                           cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
                     onclick="sendReq({ 
-                                      'note_id': document.getElementById('input_add_note_to_favorite_note_id').value,
+                                      'note_id': document.getElementById('input_add_favorite_note_note_id').value,
                                       
-                                      'access_token': document.getElementById('input_add_note_to_favorite_access_token').value,
+                                      'access_token': document.getElementById('input_add_favorite_note_access_token').value,
                                       
                                     }, {
                                       
-                                    }, 'result_add_note_to_favorite', 'PATCH note/favorite HTTP/1.1', 'http://localhost:8000')"
+                                    }, 'result_add_favorite_note', 'PATCH note/favorite HTTP/1.1', 'http://localhost:8000')"
                   >
                     send
                   </div>
@@ -1415,7 +1439,7 @@
               <!-- Method description -->
               <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 375ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
-                  <span id="add_note_to_favorite" class="cursor-pointer select-none">add note to favorite</span>
+                  <span id="delete_note" class="cursor-pointer select-none">delete note</span>
                   
                     <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
                     <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
@@ -1450,7 +1474,7 @@
                     
                   </div>
                   <pre><code
-                      id="result_add_note_to_favorite"
+                      id="result_delete_note"
                       class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
                     >DELETE note/id{note_id} HTTP/1.1</code></pre>
                   <div class="flex">
@@ -1461,12 +1485,12 @@
                           <div class="relative group">
                             <input
                               type="text"
-                              id="input_add_note_to_favorite_note_id"
+                              id="input_delete_note_note_id"
                               required
                               class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
                             >
                             <label
-                              for="input_add_note_to_favorite_note_id"
+                              for="input_delete_note_note_id"
                               class="transform transition-all absolute top-0 left-0 h-full flex items-center
                                     pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
                                     peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
@@ -1479,12 +1503,12 @@
                           <div class="relative group">
                             <input
                               type="text"
-                              id="input_add_note_to_favorite_access_token"
+                              id="input_delete_note_access_token"
                               required
                               class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
                             >
                             <label
-                              for="input_add_note_to_favorite_access_token"
+                              for="input_delete_note_access_token"
                               class="transform transition-all absolute top-0 left-0 h-full flex items-center
                                     pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
                                     peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
@@ -1505,13 +1529,13 @@
                     class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
                           cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
                     onclick="sendReq({ 
-                                      'note_id': document.getElementById('input_add_note_to_favorite_note_id').value,
+                                      'note_id': document.getElementById('input_delete_note_note_id').value,
                                       
-                                      'access_token': document.getElementById('input_add_note_to_favorite_access_token').value,
+                                      'access_token': document.getElementById('input_delete_note_access_token').value,
                                       
                                     }, {
                                       
-                                    }, 'result_add_note_to_favorite', 'DELETE note/id{note_id} HTTP/1.1', 'http://localhost:8000')"
+                                    }, 'result_delete_note', 'DELETE note/id{note_id} HTTP/1.1', 'http://localhost:8000')"
                   >
                     send
                   </div>
@@ -1523,7 +1547,7 @@
               <!-- Method description -->
               <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 400ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
-                  <span id="add_note_to_favorite" class="cursor-pointer select-none">add note to favorite</span>
+                  <span id="restore_note" class="cursor-pointer select-none">restore note</span>
                   
                     <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
                     <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
@@ -1558,7 +1582,7 @@
                     
                   </div>
                   <pre><code
-                      id="result_add_note_to_favorite"
+                      id="result_restore_note"
                       class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
                     >PATCH note/restore{note_id} HTTP/1.1</code></pre>
                   <div class="flex">
@@ -1569,12 +1593,12 @@
                           <div class="relative group">
                             <input
                               type="text"
-                              id="input_add_note_to_favorite_note_id"
+                              id="input_restore_note_note_id"
                               required
                               class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
                             >
                             <label
-                              for="input_add_note_to_favorite_note_id"
+                              for="input_restore_note_note_id"
                               class="transform transition-all absolute top-0 left-0 h-full flex items-center
                                     pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
                                     peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
@@ -1587,12 +1611,12 @@
                           <div class="relative group">
                             <input
                               type="text"
-                              id="input_add_note_to_favorite_access_token"
+                              id="input_restore_note_access_token"
                               required
                               class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
                             >
                             <label
-                              for="input_add_note_to_favorite_access_token"
+                              for="input_restore_note_access_token"
                               class="transform transition-all absolute top-0 left-0 h-full flex items-center
                                     pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
                                     peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
@@ -1613,13 +1637,13 @@
                     class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
                           cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
                     onclick="sendReq({ 
-                                      'note_id': document.getElementById('input_add_note_to_favorite_note_id').value,
+                                      'note_id': document.getElementById('input_restore_note_note_id').value,
                                       
-                                      'access_token': document.getElementById('input_add_note_to_favorite_access_token').value,
+                                      'access_token': document.getElementById('input_restore_note_access_token').value,
                                       
                                     }, {
                                       
-                                    }, 'result_add_note_to_favorite', 'PATCH note/restore{note_id} HTTP/1.1', 'http://localhost:8000')"
+                                    }, 'result_restore_note', 'PATCH note/restore{note_id} HTTP/1.1', 'http://localhost:8000')"
                   >
                     send
                   </div>
@@ -1631,7 +1655,7 @@
               <!-- Method description -->
               <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 425ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
-                  <span id="get_note_by_id" class="cursor-pointer select-none">get note by id</span>
+                  <span id="get_public_note" class="cursor-pointer select-none">get public note</span>
                   
                 </div>
                 <div class="flex flex-col gap-4 w-2/3 h-full">
@@ -1654,7 +1678,7 @@
                     
                   </div>
                   <pre><code
-                      id="result_get_note_by_id"
+                      id="result_get_public_note"
                       class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
                     >GET note/{note_name} HTTP/1.1</code></pre>
                   <div class="flex">
@@ -1665,12 +1689,12 @@
                           <div class="relative group">
                             <input
                               type="text"
-                              id="input_get_note_by_id_note_name"
+                              id="input_get_public_note_note_name"
                               required
                               class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
                             >
                             <label
-                              for="input_get_note_by_id_note_name"
+                              for="input_get_public_note_note_name"
                               class="transform transition-all absolute top-0 left-0 h-full flex items-center
                                     pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
                                     peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
@@ -1691,11 +1715,11 @@
                     class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
                           cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
                     onclick="sendReq({ 
-                                      'note_name': document.getElementById('input_get_note_by_id_note_name').value,
+                                      'note_name': document.getElementById('input_get_public_note_note_name').value,
                                       
                                     }, {
                                       
-                                    }, 'result_get_note_by_id', 'GET note/{note_name} HTTP/1.1', 'http://localhost:8000')"
+                                    }, 'result_get_public_note', 'GET note/{note_name} HTTP/1.1', 'http://localhost:8000')"
                   >
                     send
                   </div>
@@ -3563,6 +3587,644 @@
                                     }, {
                                       
                                     }, 'result_edit_desk_by_id', 'PATCH desk/id{did} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 825ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="share_note" class="cursor-pointer select-none">share note</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            desk_id <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            desk_name <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_share_note"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH desk/share HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_share_note_desk_id"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_share_note_desk_id"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              desk_id
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_share_note_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_share_note_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_share_note_desk_name"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_share_note_desk_name"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              desk_name
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'desk_id': document.getElementById('input_share_note_desk_id').value,
+                                      
+                                      'access_token': document.getElementById('input_share_note_access_token').value,
+                                      
+                                      'desk_name': document.getElementById('input_share_note_desk_name').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_share_note', 'PATCH desk/share HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 850ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="unshare_note" class="cursor-pointer select-none">unshare note</span>
+                  
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      Unshares desk by <div class="flex"><div class="flex bg-fore/[0.1] px-4 rounded-lg h-min">note_id</div></div>
+                    </div>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            desk_id <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>note ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td>user token</td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_unshare_note"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH desk/unshare HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_unshare_note_desk_id"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_unshare_note_desk_id"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              desk_id
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_unshare_note_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_unshare_note_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'desk_id': document.getElementById('input_unshare_note_desk_id').value,
+                                      
+                                      'access_token': document.getElementById('input_unshare_note_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_unshare_note', 'PATCH desk/unshare HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 875ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="add_desk_to_fav" class="cursor-pointer select-none">add desk to fav</span>
+                  
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      Toggles note favorite
+                    </div>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            desk_id <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>note ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td>user token</td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_add_desk_to_fav"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH desk/favorite HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_add_desk_to_fav_desk_id"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_add_desk_to_fav_desk_id"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              desk_id
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_add_desk_to_fav_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_add_desk_to_fav_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'desk_id': document.getElementById('input_add_desk_to_fav_desk_id').value,
+                                      
+                                      'access_token': document.getElementById('input_add_desk_to_fav_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_add_desk_to_fav', 'PATCH desk/favorite HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 900ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="delete_desk" class="cursor-pointer select-none">delete desk</span>
+                  
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      Moves desk into trash or delete it.
+                    </div>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            desk_id <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>note ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td>user token</td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_delete_desk"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >DELETE desk/id{desk_id} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_delete_desk_desk_id"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_delete_desk_desk_id"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              desk_id
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_delete_desk_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_delete_desk_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'desk_id': document.getElementById('input_delete_desk_desk_id').value,
+                                      
+                                      'access_token': document.getElementById('input_delete_desk_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_delete_desk', 'DELETE desk/id{desk_id} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 925ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="restore_desk_from_trash" class="cursor-pointer select-none">restore desk from trash</span>
+                  
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      Restores desk from trash
+                    </div>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            desk_id <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>note ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td>user token</td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_restore_desk_from_trash"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH desk/restore{desk_id} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_restore_desk_from_trash_desk_id"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_restore_desk_from_trash_desk_id"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              desk_id
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_restore_desk_from_trash_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_restore_desk_from_trash_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'desk_id': document.getElementById('input_restore_desk_from_trash_desk_id').value,
+                                      
+                                      'access_token': document.getElementById('input_restore_desk_from_trash_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_restore_desk_from_trash', 'PATCH desk/restore{desk_id} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 950ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="get_public_desk" class="cursor-pointer select-none">get public desk</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            desk_name <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_get_public_desk"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >GET desk/{desk_name} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_get_public_desk_desk_name"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_get_public_desk_desk_name"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              desk_name
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'desk_name': document.getElementById('input_get_public_desk_desk_name').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_get_public_desk', 'GET desk/{desk_name} HTTP/1.1', 'http://localhost:8000')"
                   >
                     send
                   </div>

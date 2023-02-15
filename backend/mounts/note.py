@@ -138,7 +138,7 @@ async def unshare_note(note_id: int, access_token: str):
 
 
 @note_app.patch('/favorite')
-async def add_note_to_favorite(note_id: int, access_token: str):
+async def add_favorite_note(note_id: int, access_token: str):
     """
     Toggles note favorite
 
@@ -161,7 +161,7 @@ async def add_note_to_favorite(note_id: int, access_token: str):
 
 
 @note_app.delete('/id{note_id}')
-async def add_note_to_favorite(note_id: int, access_token: str):
+async def delete_note(note_id: int, access_token: str):
     """
     Moves note into trash or delete it.
 
@@ -194,7 +194,7 @@ async def add_note_to_favorite(note_id: int, access_token: str):
 
 
 @note_app.patch('/restore{note_id}')
-async def add_note_to_favorite(note_id: int, access_token: str):
+async def restore_note(note_id: int, access_token: str):
     """
     Restores note from trash
 
@@ -221,7 +221,7 @@ async def add_note_to_favorite(note_id: int, access_token: str):
 
 
 @note_app.get('/{note_name}')
-async def get_note_by_id(note_name: str):
+async def get_public_note(note_name: str):
     """
     Finds note by its ID
     """

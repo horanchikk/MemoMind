@@ -426,7 +426,7 @@ async def unshare_note(desk_id: int, access_token: str):
 
 
 @desk_app.patch('/favorite')
-async def add_note_to_favorite(desk_id: int, access_token: str):
+async def add_desk_to_fav(desk_id: int, access_token: str):
     """
     Toggles note favorite
 
@@ -449,7 +449,7 @@ async def add_note_to_favorite(desk_id: int, access_token: str):
 
 
 @desk_app.delete('/id{desk_id}')
-async def add_note_to_favorite(desk_id: int, access_token: str):
+async def delete_desk(desk_id: int, access_token: str):
     """
     Moves desk into trash or delete it.
 
@@ -482,7 +482,7 @@ async def add_note_to_favorite(desk_id: int, access_token: str):
 
 
 @desk_app.patch('/restore{desk_id}')
-async def add_note_to_favorite(desk_id: int, access_token: str):
+async def restore_desk_from_trash(desk_id: int, access_token: str):
     """
     Restores desk from trash
 
@@ -509,7 +509,7 @@ async def add_note_to_favorite(desk_id: int, access_token: str):
 
 
 @desk_app.get('/{desk_name}')
-async def get_note_by_id(desk_name: str):
+async def get_public_desk(desk_name: str):
     """
     Finds desk by its ID
     """
