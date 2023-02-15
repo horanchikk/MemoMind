@@ -8,7 +8,42 @@
   display: none;
 }
 
+/* here is some animations) */
+
 @keyframes showUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes showDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes showLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes showRight {
   0% {
     opacity: 0;
     transform: translateY(30px);
@@ -21,6 +56,23 @@
 
 .show-up {
   opacity: 0;
-  animation: showUp 200ms ease-out;
+  animation: showUp 300ms ease-out;
+  animation-fill-mode: forwards;
+}
+
+.show-down {
+  opacity: 0;
+  animation: showDown 300ms ease-out;
+  animation-fill-mode: forwards;
+}
+
+.show-left {
+  opacity: 0;
+  animation: showLeft 300ms ease-out;
+  animation-fill-mode: forwards;
+}
+.show-right {
+  opacity: 0;
+  animation: showRight 300ms ease-out;
   animation-fill-mode: forwards;
 }

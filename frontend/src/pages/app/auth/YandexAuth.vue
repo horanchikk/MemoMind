@@ -47,7 +47,8 @@
 </template>
 
 <script setup lang="ts">
-import router from "../../../router";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 let token = /access_token=([^&]+)/.exec(document.location.hash)![1];
 

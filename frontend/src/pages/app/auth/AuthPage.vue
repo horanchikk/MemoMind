@@ -256,7 +256,8 @@
 <script setup lang="ts">
 import { reactive, watch } from "vue";
 
-import router from "../../../router";
+import { useRouter } from "vue-router";
+const router = useRouter();
 import MMButton from "../../../components/MMButton.vue";
 import MMInput from "../../../components/MMInput.vue";
 import { MMAPI } from "../../../mixins/api";
@@ -323,6 +324,7 @@ async function auth(
     } else {
       useUser().config.token = inToken.access_token;
       useUser().config.username = inputData.login;
+      useUser().config.user = await MMAPI.getUserById(inToken.id);
       router.push("/app");
     }
     config.loading = false;
@@ -340,6 +342,7 @@ async function auth(
     } else {
       useUser().config.token = upToken.access_token;
       useUser().config.username = inputData.login;
+      useUser().config.user = await MMAPI.getUserById(upToken.id);
       router.push("/app");
     }
     config.loading = false;
