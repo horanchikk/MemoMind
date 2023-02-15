@@ -1,4 +1,6 @@
 # -*- coding:utf-8 -*-
+from time import time
+
 import pymongo
 from fastapi import FastAPI, Request
 
@@ -46,6 +48,8 @@ async def create_new(data: CreateDesk, access_token: str):
         'author': u['uid'],
         'columns': [],
         'public': '',
+        'created_at': time(),
+        'edited_at': -1,
         'labels': [
             {'title': 'Срочно', 'color': '#F04D64'},
             {'title': 'Запланировано', 'color': '#654A87'},

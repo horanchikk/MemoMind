@@ -123,5 +123,8 @@ class DeskModel(BaseModel):
     did: int
     author: int
     title: str
+    public: str
+    created_at: int
+    edited_at: int
     labels: list[DeskCardLabelModel]
     columns: list[DeskColumnModel]
