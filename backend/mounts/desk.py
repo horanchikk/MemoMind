@@ -265,7 +265,7 @@ async def move_card(
         }}}
     )
     d = desk.find_one({'did': did})
-    return {'response': DeskModel(**d)}
+    return {'response': DeskModel(**d).dict()}
 
 
 @desk_app.patch('/id{did}/column{cid}/card{card_index}')
