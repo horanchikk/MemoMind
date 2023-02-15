@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="{{ rootpath }}js/tailwind.config.js"></script>
+  <!-- Highlight.js include -->
+  <script src="{{ rootpath }}js/highlight.min.js"></script>
+  <script src="{{ rootpath }}js/http.min.js"></script>
+  <link rel="stylesheet" href="{{ rootpath }}style/vs2015.min.css">
+  <link rel="stylesheet" href="{{ rootpath }}style/main.css">
+</head>
+  <body
+    id="background"
+    class="flex flex-col font-semibold bg-back text-fore scroll-smooth transition-all selection:bg-fore/[0.2] selection:rounded-lg break-words"
+  >
+    <header
+      class="flex flex-col gap-4 w-full desktop:text-7xl tablet:text-6xl mobile:text-5xl items-center p-4 title-on-load"
+    >
+      {{ title }}
+      <div class="h-[1px] desktop:w-1/3 tablet:w-2/3 mobile:w-4/5 bg-fore"></div>
+      <div
+        class="flex gap-3 w-full desktop:p-4 transition-transform justify-center
+               desktop:items-center tablet:items-end mobile:items-center
+               desktop:text-3xl tablet:text-2xl mobile:text-xl"
+      >
+        <button onclick="goTo('methods')" class="cursor-pointer select-none hover:scale-105 active:scale-95">
+          METHODS
+        </button>
+        {% if errors %}
+          <button onclick="goTo('errors')" class="cursor-pointer select-none hover:scale-105 active:scale-95">
+            ERRORS
+          </button>
+        {% endif %}
+      </div>
+    </header>
+    <main class="flex flex-row gap-3 w-full h-full pt-16">
+      <!-- All methods -->
+      <div id="methodsContainer" class="flex mobile:flex-col w-full h-full">
+        <!-- Search -->
+          <div
+          id="content"
+          class="flex flex-col gap-3 desktop:w-1/4 tablet:w-1/3 mobile:w-full ml-8 mobile:m-0 p-4
+                 rounded-md bg-white/[0.01] h-fit sidebar-on-load"
+        >
+          <input
+            id="search"
+            type="search"
+            placeholder="Поиск метода ..."
+            class="rounded-md bg-fore/[0.3] p-2 mb-4 active:border-0"
+          >
+          <div
+            id="links"
+            class="flex flex-col gap-3 mobile:hidden"
+          >
+            {% for method in methods %}
+              {% if method is string %}
+                <div class="flex justify-between w-full select-none" onclick="toggleSearchHeader('{{ method }}')">
+                  <a href="#{{ method }}">- {{ method }}</a>
+                  <svg
+                    class="fill-fore cursor-pointer hover:scale-105 active:scale-95 transition-all {{method}}-arrow-down"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 320 512"
+                    width="24"
+                    height="24"
+                    style="transform: rotate(180deg)"
+                  >
+                    <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/>
+                  </svg>
+                </div>
+              {% else %}
+                <a href="#{{ method.id }}" class="indent-4 truncate search-header">- {{ method.name }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        <!-- Methods list -->
+        <div id="methods" class="flex flex-col gap-2 desktop:gap-4 desktop:w-1/2 tablet:w-2/3 mobile:w-full">
+          {% for method in methods %}
+            {% if method is string %}
+              <div
+                id="{{method}}"
+                class="flex w-full font-black justify-center desktop:text-5xl tablet:text-4xl mobile:text-3xl method-on-load py-4"
+                style="animation-delay: {{loop.index * 25}}ms"
+              >
+                # {{ method }}
+              </div>
+            {% else %}
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: {{loop.index * 25}}ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="{{ method.id }}" class="cursor-pointer select-none">{{ method.name }}</span>
+                  {% if method.description %}
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      {{ method.description|safe }}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    {% if method.json %}
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">JSON Body</td></tr>
+                        {% for param in method.json %}
+                        <tr>
+                          <td class="{{ 'text-red-400' if param.required else 'text-yellow-400' }}">
+                            {{ param.name }} <span class="text-sm text-green-200">{{ param.type }}</span>
+                          </td>
+                          <td>{{ param.description }}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                    {% endif %}
+                    <!-- params data -->
+                    {% if method.params %}
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        {% for param in method.params %}
+                        <tr>
+                          <td class="{{ 'text-red-400' if param.required else 'text-yellow-400' }}">
+                            {{ param.name }} <span class="text-sm text-green-200">{{ param.type }}</span>
+                          </td>
+                          <td>{{ param.description }}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                    {% endif %}
+                  </div>
+                  <pre><code
+                      id="result_{{method.id}}"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >{{ method.http }}</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      {% if method.params %}
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        {% for param in method.params %}
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_{{ method.id }}_{{ param.name }}"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_{{ method.id }}_{{ param.name }}"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              {{ param.name }}
+                            </label>
+                          </div>
+                        {% endfor %}
+                      {%endif%}
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      {% if method.json %}
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg text-end w-full">JSON</span>
+                        {% for param in method.json %}
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_json_{{ method.id }}_{{ param.name }}"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_json_{{ method.id }}_{{ param.name }}"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              {{ param.name }}
+                            </label>
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ {%for param in method.params%}
+                                      '{{param.name}}': document.getElementById('input_{{ method.id }}_{{ param.name }}').value,
+                                      {%endfor%}
+                                    }, {
+                                      {%for param in method.json%}
+                                      '{{param.name}}': document.getElementById('input_json_{{ method.id }}_{{ param.name }}').value,
+                                      {%endfor%}
+                                    }, 'result_{{method.id}}', '{{method.http}}', '{{ api_url }}')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <!-- Errors -->
+      {% if errors %}
+        <div id="errorsContainer" class="flex w-full flex-row mobile:flex-col justify-center">
+          <div class="flex flex-col gap-3 desktop:w-1/6 tablet:w-1/5 mobile:w-full ml-8 mobile:m-0 p-4
+                      rounded-md bg-white/[0.01] h-fit sidebar-on-load"
+          >
+            <input
+              id="searchError"
+              type="search"
+              placeholder="Поиск ошибки ..."
+              class="rounded-md bg-fore/[0.3] p-2 mb-4 active:border-0"
+            >
+            <div
+              id="errorLinks"
+              class="flex flex-col gap-3 mobile:hidden"
+            >
+              {% for error in errors %}
+                <a
+                  href="#error{{ error.code }}"
+                >
+                  - {{ error.name }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+          <div id="errors" class="flex flex-col gap-2 w-full items-center">
+            {% for error in errors %}
+              <div class="flex desktop:w-1/2 tablet:w-3/4 mobile:w-full gap-2 method-on-load" style="animation-delay: {{loop.index * 25}}ms">
+                <div id="error{{ error.code }}" class="flex gap-2 w-1/3 bg-fore/[0.1] rounded-lg p-4 text-center">
+                  <span class="flex place-self-start text-purple-300">{{ error.code }}</span>
+                  <span class="flex justify-center w-full">{{ error.name }}</span>
+                </div>
+                <div class="flex flex-col w-2/3 bg-fore/[0.05] rounded-lg p-4 text-center">
+                  <span>{{ error.value }}</span>
+                  {% if error.status %}
+                    <span class="bg-fore/[0.05] rounded-lg">{{ error.status }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </main>
+    <!-- Main JS -->
+    <script src="{{ rootpath }}js/main.js"></script>
+    <script>hljs.highlightAll()</script>
+  </body>
+</html>

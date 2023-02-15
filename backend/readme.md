@@ -6,6 +6,6 @@
 
 ## Run
 ```bash
-cd voluntrix
+cd memomind
 uvicorn backend.main:app --reload
 ```

@@ -25,12 +25,54 @@ class CreateNote(BaseModel):
 
 
 class EditNote(BaseModel):
-    id: int
-    title: str
+    title: str = ''
     data: str
     cover: str
-    gradient: list[str]
-    use_cover: bool
+    gradient: list[str] = []
+
+
+class CreateDesk(BaseModel):
+    title: str
+
+
+class EditDesk(BaseModel):
+    title: str
+
+
+class EditLabel(BaseModel):
+    title: str
+    color: str
+
+
+class EditColumn(BaseModel):
+    title: str
+
+
+class CreateLabel(BaseModel):
+    did: int
+    title: str
+    color: str
+
+
+class EditCard(BaseModel):
+    title: str
+    description: str
+    labels: list[int]
+    properties: list[dict[str, object]]
+
+
+class CreateColumn(BaseModel):
+    did: int
+    title: str
+
+
+class CreateColumnCard(BaseModel):
+    did: int
+    cid: int
+    title: str
+    description: str
+    labels: list[int]
+    properties: list[dict[str, object]]
 
 
 class UserModel(BaseModel):
@@ -42,6 +84,8 @@ class UserModel(BaseModel):
     access_token: str
     notes: list[int]
     desks: list[int]
+    notes_favorite: list[int]
+    desks_favorite: list[int]
     notes_trash: list[int]
     desks_trash: list[int]
 
@@ -57,39 +101,27 @@ class NoteModel(BaseModel):
     edited_at: int
 
 
-class DeskModel(BaseModel):
-    did: int
-    author: int
-    title: str
-    columns: list[int]
-
-
-class DeskColumnModel(BaseModel):
-    did: int
-    title: str
-    cards: list[int]
-
-
-class DeskCardModel(BaseModel):
-    did: int
-    title: str
-    description: str
-    label: list[int]
-    properties: list[int]
-
-
 class DeskCardLabelModel(BaseModel):
-    did: int
     title: str
     color: str  # HEX string
 
 
-class DeskPropertyModel(BaseModel):
-    pid: int
-    ptype: int  # ID of property type
-    obj: dict[str, object]  # object data
-
-
-class PropertyTypeModel(BaseModel):
-    pid: int
+class DeskCardModel(BaseModel):
     title: str
+    description: str
+    labels: list[int] = []  # list of indexes
+    properties: list[dict[str, object]] = []
+
+
+class DeskColumnModel(BaseModel):
+    cid: int
+    title: str
+    cards: list[DeskCardModel]
+
+
+class DeskModel(BaseModel):
+    did: int
+    author: int
+    title: str
+    labels: list[DeskCardLabelModel]
+    columns: list[DeskColumnModel]
