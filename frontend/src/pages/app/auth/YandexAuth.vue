@@ -43,7 +43,6 @@
         </g>
       </g>
     </svg>
-    <p>{{ token ? "Token is finded" : "Token not found" }}</p>
   </div>
 </template>
 
@@ -52,14 +51,12 @@ import router from "../../../router";
 
 let token = /access_token=([^&]+)/.exec(document.location.hash)![1];
 
-setTimeout(() => {
-  if (token !== undefined) {
-    localStorage.setItem("yaToken", token);
-    router.push("/app");
-  } else {
-    router.push("/");
-  }
-}, 5000);
+if (token !== undefined) {
+  localStorage.setItem("yaToken", token);
+  router.push("/app");
+} else {
+  router.push("/");
+}
 </script>
 
 <style scoped></style>

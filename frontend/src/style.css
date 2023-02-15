@@ -8,19 +8,19 @@
   display: none;
 }
 
-@keyframes showLeft {
+@keyframes showUp {
   0% {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateY(30px);
   }
   100% {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateY(0px);
   }
 }
 
-.show-left {
+.show-up {
   opacity: 0;
-  animation: showLeft 200ms ease-out;
+  animation: showUp 200ms ease-out;
   animation-fill-mode: forwards;
 }
