@@ -88,6 +88,18 @@
               
             
               
+                <a href="#change_font" class="indent-4 truncate search-header">- change font</a>
+              
+            
+              
+                <a href="#change_font" class="indent-4 truncate search-header">- change font</a>
+              
+            
+              
+                <a href="#change_font" class="indent-4 truncate search-header">- change font</a>
+              
+            
+              
                 <a href="#get_user_by_id" class="indent-4 truncate search-header">- get user by id</a>
               
             
@@ -595,6 +607,315 @@
               <!-- Method description -->
               <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 150ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="change_font" class="cursor-pointer select-none">change font</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            font <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_change_font"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH user/font HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_change_font_font"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_change_font_font"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              font
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_change_font_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_change_font_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'font': document.getElementById('input_change_font_font').value,
+                                      
+                                      'access_token': document.getElementById('input_change_font_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_change_font', 'PATCH user/font HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 175ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="change_font" class="cursor-pointer select-none">change font</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            value <span class="text-sm text-green-200">bool</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_change_font"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH user/compact HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_change_font_value"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_change_font_value"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              value
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_change_font_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_change_font_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'value': document.getElementById('input_change_font_value').value,
+                                      
+                                      'access_token': document.getElementById('input_change_font_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_change_font', 'PATCH user/compact HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 200ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="change_font" class="cursor-pointer select-none">change font</span>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            value <span class="text-sm text-green-200">bool</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td></td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_change_font"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH user/small_text HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_change_font_value"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_change_font_value"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              value
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_change_font_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_change_font_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'value': document.getElementById('input_change_font_value').value,
+                                      
+                                      'access_token': document.getElementById('input_change_font_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_change_font', 'PATCH user/small_text HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 225ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_user_by_id" class="cursor-pointer select-none">get user by id</span>
                   
                 </div>
@@ -671,7 +992,7 @@
               <div
                 id="note"
                 class="flex w-full font-black justify-center desktop:text-5xl tablet:text-4xl mobile:text-3xl method-on-load py-4"
-                style="animation-delay: 175ms"
+                style="animation-delay: 250ms"
               >
                 # note
               </div>
@@ -679,7 +1000,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 200ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 275ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="check_request" class="cursor-pointer select-none"></span>
                   
@@ -755,7 +1076,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 225ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 300ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="create_new_note" class="cursor-pointer select-none">create new note</span>
                   
@@ -858,7 +1179,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 250ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 325ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_note_by_id" class="cursor-pointer select-none">get note by id</span>
                   
@@ -961,7 +1282,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 275ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 350ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_note" class="cursor-pointer select-none">edit note</span>
                   
@@ -1091,7 +1412,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 300ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 375ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="share_note" class="cursor-pointer select-none">share note</span>
                   
@@ -1221,7 +1542,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 325ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 400ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="unshare_note" class="cursor-pointer select-none">unshare note</span>
                   
@@ -1329,7 +1650,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 350ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 425ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="add_favorite_note" class="cursor-pointer select-none">add favorite note</span>
                   
@@ -1437,7 +1758,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 375ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 450ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="delete_note" class="cursor-pointer select-none">delete note</span>
                   
@@ -1545,7 +1866,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 400ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 475ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="restore_note" class="cursor-pointer select-none">restore note</span>
                   
@@ -1653,7 +1974,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 425ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 500ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_public_note" class="cursor-pointer select-none">get public note</span>
                   
@@ -1731,7 +2052,7 @@
               <div
                 id="desk"
                 class="flex w-full font-black justify-center desktop:text-5xl tablet:text-4xl mobile:text-3xl method-on-load py-4"
-                style="animation-delay: 450ms"
+                style="animation-delay: 525ms"
               >
                 # desk
               </div>
@@ -1739,7 +2060,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 475ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 550ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="check_request" class="cursor-pointer select-none"></span>
                   
@@ -1815,7 +2136,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 500ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 575ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="create_new" class="cursor-pointer select-none">create new</span>
                   
@@ -1918,7 +2239,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 525ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 600ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="create_new_label" class="cursor-pointer select-none">create new label</span>
                   
@@ -2021,7 +2342,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 550ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 625ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="create_new_column" class="cursor-pointer select-none">create new column</span>
                   
@@ -2124,7 +2445,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 575ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 650ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="create_column_card" class="cursor-pointer select-none">create column card</span>
                   
@@ -2227,7 +2548,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 600ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 675ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_label_by_label_index" class="cursor-pointer select-none">get label by label index</span>
                   
@@ -2357,7 +2678,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 625ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 700ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_column_by_column_index" class="cursor-pointer select-none">get column by column index</span>
                   
@@ -2487,7 +2808,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 650ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 725ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_desk_by_id" class="cursor-pointer select-none">get desk by id</span>
                   
@@ -2590,7 +2911,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 675ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 750ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_label" class="cursor-pointer select-none">edit label</span>
                   
@@ -2747,7 +3068,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 700ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 775ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="move_card" class="cursor-pointer select-none">move card</span>
                   
@@ -2963,7 +3284,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 725ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 800ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_card" class="cursor-pointer select-none">edit card</span>
                   
@@ -3152,7 +3473,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 750ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 825ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="move_column" class="cursor-pointer select-none">move column</span>
                   
@@ -3309,7 +3630,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 775ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 850ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_column" class="cursor-pointer select-none">edit column</span>
                   
@@ -3466,7 +3787,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 800ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 875ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_desk_by_id" class="cursor-pointer select-none">edit desk by id</span>
                   
@@ -3596,7 +3917,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 825ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 900ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="share_note" class="cursor-pointer select-none">share note</span>
                   
@@ -3726,7 +4047,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 850ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 925ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="unshare_note" class="cursor-pointer select-none">unshare note</span>
                   
@@ -3834,7 +4155,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 875ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 950ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="add_desk_to_fav" class="cursor-pointer select-none">add desk to fav</span>
                   
@@ -3942,7 +4263,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 900ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 975ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="delete_desk" class="cursor-pointer select-none">delete desk</span>
                   
@@ -4050,7 +4371,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 925ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 1000ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="restore_desk_from_trash" class="cursor-pointer select-none">restore desk from trash</span>
                   
@@ -4158,7 +4479,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 950ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 1025ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_public_desk" class="cursor-pointer select-none">get public desk</span>
                   

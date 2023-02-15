@@ -51,11 +51,11 @@ async def create_new_user(data: SignUpUser):
         'first_name': data.first_name,
         'last_name': data.last_name,
         'email': data.email,
-        'notes': [],
-        'desks': [],
         'font': '',
         'compact': False,
         'small_text': False,
+        'notes': [],
+        'desks': [],
         'notes_favorite': [],
         'desks_favorite': [],
         'notes_trash': [],
@@ -75,7 +75,7 @@ async def log_in_user(data: LogInUser):
     u = user.find_one({'login': data.login})
     if u is None:
         return Error.UserIsNotExists
-    if not check_password_hash(data.password, u['password']):
+    if not check_password_hash(u['password'], data.password):
         return Error.LoginOrPasswordIsNotCorrect
     return {'response': {
         'access_token': u['access_token']
@@ -88,7 +88,7 @@ async def edit_user_profile(data: EditUserProfile, access_token: str):
     Edits user profile
     """
     u = user.find_one({'access_token': access_token})
-    if check_password_hash(data.old_password, u['password']):
+    if check_password_hash(u['password'], data.old_password):
         return Error.PasswordIsNotCorrect
     token = token_hex(32)
     user.update_one(
