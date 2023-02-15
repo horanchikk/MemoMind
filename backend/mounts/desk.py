@@ -55,6 +55,7 @@ async def create_new(data: CreateDesk, access_token: str):
         ]
     }
     desk.insert_one(desk_data)
+    user.update_one({'uid': u['uid']}, {'$push': {'desks': did}})
     return {'response': {
         'did': did
     }}
@@ -380,3 +381,139 @@ async def edit_desk_by_id(data: EditDesk, did: int, access_token: str):
         return Error.TitleIsEmpty
     desk.update_one({'did': did}, {'$set': data.dict()})
     return {'response': 'success'}
+
+
+@desk_app.patch('/share')
+async def share_note(desk_id: int, access_token: str, desk_name: str):
+    """
+    Shares the desk for public view. length of `desk_name` should be larger than 6 symbols
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = desk.find_one({'did': desk_id})
+    if n is None:
+        return Error.DeskIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    n = desk.find_one({'public': desk_name})
+    if n is not None:
+        return Error.DeskNameIsExits
+    if desk_name.startswith('id'):
+        return Error.DeskCantStartsWithId
+    desk.update_one({'did': desk_id}, {'$set': {'public': desk_name}})
+    return {'response': 'success'}
+
+
+@desk_app.patch('/unshare')
+async def unshare_note(desk_id: int, access_token: str):
+    """
+    Unshares desk by `note_id`
+
+    :param desk_id: note ID
+    :param access_token: user token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = desk.find_one({'did': desk_id})
+    if n is None:
+        return Error.DeskIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    desk.update_one({'did': desk_id}, {'$set': {'public': ''}})
+    return {'response': 'success'}
+
+
+@desk_app.patch('/favorite')
+async def add_note_to_favorite(desk_id: int, access_token: str):
+    """
+    Toggles note favorite
+
+    :param desk_id: note ID
+    :param access_token: user token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = desk.find_one({'did': desk_id})
+    if n is None:
+        return Error.DeskIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    if desk_id in u['desks_favorite']:
+        desk.update_one({'nid': desk_id}, {'$pull': {'desks_favorite': {'$eq': desk_id}}})
+        return {'response': False}
+    desk.update_one({'nid': desk_id}, {'$push': {'desks_favorite': desk_id}})
+    return {'response': True}
+
+
+@desk_app.delete('/id{desk_id}')
+async def add_note_to_favorite(desk_id: int, access_token: str):
+    """
+    Moves desk into trash or delete it.
+
+    :param desk_id: note ID
+    :param access_token: user token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = desk.find_one({'nid': desk_id})
+    if n is None:
+        return Error.DeskIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    if desk_id not in u['desks'] and desk_id not in u['desks_trash']:
+        return Error.DeskIsNotExists
+    if desk_id in u['desks']:
+        user.update_one(
+            {'uid': u['uid']}, {'$push': {'desks_trash': desk_id}}
+        )
+        user.update_one(
+            {'uid': u['uid']}, {'$pull': {'desks': desk_id}}
+        )
+    else:
+        user.update_one(
+            {'uid': u['uid']}, {'$pull': {'desks_trash': desk_id}}
+        )
+        desk.delete_one({'did': desk_id})
+    return {'response': 'success'}
+
+
+@desk_app.patch('/restore{desk_id}')
+async def add_note_to_favorite(desk_id: int, access_token: str):
+    """
+    Restores desk from trash
+
+    :param desk_id: note ID
+    :param access_token: user token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = desk.find_one({'did': desk_id})
+    if n is None:
+        return Error.NoteIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    if desk_id not in u['desks_trash']:
+        return Error.NoteIsNotExists
+    user.update_one(
+        {'uid': u['uid']}, {'$pull': {'desks_trash': desk_id}}
+    )
+    user.update_one(
+        {'uid': u['uid']}, {'$push': {'desks': desk_id}}
+    )
+    return {'response': 'success'}
+
+
+@desk_app.get('/{desk_name}')
+async def get_note_by_id(desk_name: str):
+    """
+    Finds desk by its ID
+    """
+    n = desk.find_one({'public': desk_name})
+    if n is None:
+        return Error.NoteIsNotExists
+    return {'response': DeskModel(**n)}
