@@ -5,5 +5,22 @@
 @tailwind utilities;
 
 *::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes showLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.show-left {
   opacity: 0;
+  animation: showLeft 200ms ease-out;
+  animation-fill-mode: forwards;
 }

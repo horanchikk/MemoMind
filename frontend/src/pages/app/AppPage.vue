@@ -1,8 +1,8 @@
 <template>
   <main
-    class="w-full h-full flex flex-col bg-lwhite items-center justify-center"
+    class="flex flex-col justify-center items-center w-full h-full bg-lwhite"
   >
-    <p class="text-4xl">Here is app page</p>
+    <p class="text-4xl">В разработке)😁</p>
     <p class="text-sm">
       {{ yaToken ? "yaToken founded in localStorage" : "yaToken is undefined" }}
     </p>

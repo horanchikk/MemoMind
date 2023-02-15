@@ -1,24 +1,21 @@
 <template>
-  <main class="w-full h-full flex items-center justify-center">
+  <main class="flex justify-center items-center w-full h-full">
     <div
-      class="w-4/6 h-full shadow-sm shadow-black flex flex-col gap-7 items-center justify-center"
+      class="flex flex-col gap-7 justify-center items-center w-2/6 h-full shadow-sm shadow-black"
     >
-      <div class="flex justify-between items-center gap-5 w-[266px]">
+      <div class="flex justify-center items-center gap-5 w-[266px]">
         <img src="../../../assets/icon.svg" alt="Icon" />
-        <p class="tracking-widest select-none font-semibold text-3xl">
-          MemoMind
-        </p>
       </div>
       <form
         v-if="params === 'signIn'"
-        class="flex flex-col items-center justify-center gap-5 rounded-md shadow-sm shadow-black p-5 w-80 text-lg font-bold select-none"
+        class="flex flex-col gap-5 justify-center items-center p-5 w-80 text-lg font-bold rounded-md shadow-sm select-none shadow-black show-left"
       >
         <p>Вход</p>
 
         <div class="flex flex-col gap-5">
           <MMInput type="text" v-model="login" placeholder="Логин" autofocus />
           <MMInput type="password" v-model="password" placeholder="Пароль" />
-          <p class="text-[#f80000] text-sm text-center">Типо эксцепшон</p>
+          <!-- <p class="text-[#f80000] text-sm text-center">Типо эксцепшон</p> -->
           <MMButton>Войти</MMButton>
           <MMButton transparent @click="params = 'signUp'"
             >Впервые в MemoMind?</MMButton
@@ -27,7 +24,7 @@
       </form>
       <form
         v-else-if="params === 'signUp'"
-        class="flex flex-col items-center justify-center gap-5 rounded-md shadow-sm shadow-black p-5 w-80 text-lg font-bold select-none"
+        class="flex flex-col gap-5 justify-center items-center p-5 w-80 text-lg font-bold rounded-md shadow-sm select-none shadow-black show-left"
       >
         <p>Регистрация</p>
 
@@ -41,12 +38,12 @@
           >
         </div>
       </form>
-      <MMButton
-        class="flex items-center justify-center w-[266px] bg-black hover:bg-[#1e6659]"
+      <button
+        class="p-2 w-[266px] text-white flex justify-center bg-black rounded-md transition-all text-md hover:bg-opacity-90 active:opacity-80 active:scale-90"
         @click="yaAuth()"
       >
         <div v-if="!authLoading" class="flex gap-5">
-          <img src="../../../assets/yandex.svg" alt="yandex" class="h-6 w-6" />
+          <img src="../../../assets/yandex.svg" alt="yandex" class="w-6 h-6" />
           <p>Войти с Яндекс ID</p>
         </div>
         <svg
@@ -99,9 +96,9 @@
             </g>
           </g>
         </svg>
-      </MMButton>
+      </button>
     </div>
-    <div class="w-2/6 h-full bg-auth"></div>
+    <div class="w-4/6 h-full bg-auth"></div>
   </main>
 </template>
 
