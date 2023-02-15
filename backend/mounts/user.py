@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from secrets import token_hex
 
+import pymongo
 from fastapi import FastAPI, Request
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -38,6 +39,9 @@ async def create_new_user(data: SignUpUser):
         return Error.LoginWasUsed
     # Create user
     uid = user.estimated_document_count()
+    if uid != 0:
+        u = user.find_one({}, sort=[('_id', pymongo.DESCENDING)])
+        uid = u['uid'] + 1
     token = token_hex(32)
     user.insert_one({
         'uid': uid,

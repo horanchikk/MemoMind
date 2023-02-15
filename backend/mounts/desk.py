@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+import pymongo
 from fastapi import FastAPI, Request
 
 from ..exceptions import Error
@@ -36,6 +37,9 @@ async def create_new(data: CreateDesk, access_token: str):
     """
     u = user.find_one({'access_token': access_token})
     did = desk.estimated_document_count()
+    if did != 0:
+        d = desk.find_one({}, sort=[('_id', pymongo.DESCENDING)])
+        did = d['did'] + 1
     desk_data = {
         'did': did,
         'title': data.title,

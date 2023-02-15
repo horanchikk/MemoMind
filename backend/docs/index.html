@@ -129,6 +129,22 @@
               
             
               
+                <a href="#unshare_note" class="indent-4 truncate search-header">- unshare note</a>
+              
+            
+              
+                <a href="#add_note_to_favorite" class="indent-4 truncate search-header">- add note to favorite</a>
+              
+            
+              
+                <a href="#add_note_to_favorite" class="indent-4 truncate search-header">- add note to favorite</a>
+              
+            
+              
+                <a href="#add_note_to_favorite" class="indent-4 truncate search-header">- add note to favorite</a>
+              
+            
+              
                 <a href="#get_note_by_id" class="indent-4 truncate search-header">- get note by id</a>
               
             
@@ -1183,6 +1199,438 @@
               <!-- Method description -->
               <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 325ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="unshare_note" class="cursor-pointer select-none">unshare note</span>
+                  
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      Unshares note by <div class="flex"><div class="flex bg-fore/[0.1] px-4 rounded-lg h-min">note_id</div></div>
+                    </div>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            note_id <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>note ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td>user token</td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_unshare_note"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH note/unshare HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_unshare_note_note_id"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_unshare_note_note_id"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              note_id
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_unshare_note_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_unshare_note_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'note_id': document.getElementById('input_unshare_note_note_id').value,
+                                      
+                                      'access_token': document.getElementById('input_unshare_note_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_unshare_note', 'PATCH note/unshare HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 350ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="add_note_to_favorite" class="cursor-pointer select-none">add note to favorite</span>
+                  
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      Toggles note favorite
+                    </div>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            note_id <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>note ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td>user token</td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_add_note_to_favorite"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH note/favorite HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_add_note_to_favorite_note_id"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_add_note_to_favorite_note_id"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              note_id
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_add_note_to_favorite_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_add_note_to_favorite_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'note_id': document.getElementById('input_add_note_to_favorite_note_id').value,
+                                      
+                                      'access_token': document.getElementById('input_add_note_to_favorite_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_add_note_to_favorite', 'PATCH note/favorite HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 375ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="add_note_to_favorite" class="cursor-pointer select-none">add note to favorite</span>
+                  
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      Moves note into trash or delete it.
+                    </div>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            note_id <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>note ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td>user token</td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_add_note_to_favorite"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >DELETE note/id{note_id} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_add_note_to_favorite_note_id"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_add_note_to_favorite_note_id"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              note_id
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_add_note_to_favorite_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_add_note_to_favorite_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'note_id': document.getElementById('input_add_note_to_favorite_note_id').value,
+                                      
+                                      'access_token': document.getElementById('input_add_note_to_favorite_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_add_note_to_favorite', 'DELETE note/id{note_id} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 400ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
+                  <span id="add_note_to_favorite" class="cursor-pointer select-none">add note to favorite</span>
+                  
+                    <div class="flex self-center h-[1px] w-5/6 bg-fore"></div>
+                    <div class="flex flex-col gap-1 desktop:text-lg tablet:text-base mobile:text-sm text-justify">
+                      Restores note from trash
+                    </div>
+                  
+                </div>
+                <div class="flex flex-col gap-4 w-2/3 h-full">
+                  <div class="flex flex-col gap-2 desktop:text-lg tablet:text-base mobile:text-sm">
+                    <!-- JSON data -->
+                    
+                    <!-- params data -->
+                    
+                      <table class="w-full table-fixed">
+                        <tr><td colspan="2" class="text-center">Параметры</td></tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            note_id <span class="text-sm text-green-200">int</span>
+                          </td>
+                          <td>note ID</td>
+                        </tr>
+                        
+                        <tr>
+                          <td class="text-red-400">
+                            access_token <span class="text-sm text-green-200">str</span>
+                          </td>
+                          <td>user token</td>
+                        </tr>
+                        
+                      </table>
+                    
+                  </div>
+                  <pre><code
+                      id="result_add_note_to_favorite"
+                      class="language-http desktop:text-base tablet:text-sm mobile:text-xs"
+                    >PATCH note/restore{note_id} HTTP/1.1</code></pre>
+                  <div class="flex">
+                    <div class="flex flex-col gap-2 w-1/2">
+                      
+                        <span class="desktop:text-2xl tablet:text-xl mobile:text-lg w-full">PARAMS</span>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_add_note_to_favorite_note_id"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_add_note_to_favorite_note_id"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              note_id
+                            </label>
+                          </div>
+                        
+                          <div class="relative group">
+                            <input
+                              type="text"
+                              id="input_add_note_to_favorite_access_token"
+                              required
+                              class="outline-0 bg-fore/[0.3] w-fit rounded-lg px-2 peer desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                            <label
+                              for="input_add_note_to_favorite_access_token"
+                              class="transform transition-all absolute top-0 left-0 h-full flex items-center
+                                    pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2
+                                    peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full
+                                    group-focus-within:pl-0 peer-valid:pl-0 desktop:text-xl tablet:text-lg mobile:text-base"
+                            >
+                              access_token
+                            </label>
+                          </div>
+                        
+                      
+                    </div>
+                    <div class="flex flex-col items-end gap-2 w-1/2">
+                      
+                    </div>
+                  </div>
+                  <!-- Send request button -->
+                  <div
+                    class="place-self-center select-none flex w-full bg-fore text-back justify-center rounded-full px-4 py-1
+                          cursor-pointer hover:scale-105 active:scale-95 transition-all font-extrabold"
+                    onclick="sendReq({ 
+                                      'note_id': document.getElementById('input_add_note_to_favorite_note_id').value,
+                                      
+                                      'access_token': document.getElementById('input_add_note_to_favorite_access_token').value,
+                                      
+                                    }, {
+                                      
+                                    }, 'result_add_note_to_favorite', 'PATCH note/restore{note_id} HTTP/1.1', 'http://localhost:8000')"
+                  >
+                    send
+                  </div>
+                </div>
+              </div>
+            
+          
+            
+              <!-- Method description -->
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 425ms">
+                <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_note_by_id" class="cursor-pointer select-none">get note by id</span>
                   
                 </div>
@@ -1259,7 +1707,7 @@
               <div
                 id="desk"
                 class="flex w-full font-black justify-center desktop:text-5xl tablet:text-4xl mobile:text-3xl method-on-load py-4"
-                style="animation-delay: 350ms"
+                style="animation-delay: 450ms"
               >
                 # desk
               </div>
@@ -1267,7 +1715,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 375ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 475ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="check_request" class="cursor-pointer select-none"></span>
                   
@@ -1343,7 +1791,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 400ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 500ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="create_new" class="cursor-pointer select-none">create new</span>
                   
@@ -1446,7 +1894,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 425ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 525ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="create_new_label" class="cursor-pointer select-none">create new label</span>
                   
@@ -1549,7 +1997,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 450ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 550ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="create_new_column" class="cursor-pointer select-none">create new column</span>
                   
@@ -1652,7 +2100,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 475ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 575ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="create_column_card" class="cursor-pointer select-none">create column card</span>
                   
@@ -1755,7 +2203,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 500ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 600ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_label_by_label_index" class="cursor-pointer select-none">get label by label index</span>
                   
@@ -1885,7 +2333,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 525ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 625ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_column_by_column_index" class="cursor-pointer select-none">get column by column index</span>
                   
@@ -2015,7 +2463,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 550ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 650ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="get_desk_by_id" class="cursor-pointer select-none">get desk by id</span>
                   
@@ -2118,7 +2566,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 575ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 675ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_label" class="cursor-pointer select-none">edit label</span>
                   
@@ -2275,7 +2723,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 600ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 700ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="move_card" class="cursor-pointer select-none">move card</span>
                   
@@ -2491,7 +2939,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 625ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 725ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_card" class="cursor-pointer select-none">edit card</span>
                   
@@ -2680,7 +3128,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 650ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 750ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="move_column" class="cursor-pointer select-none">move column</span>
                   
@@ -2837,7 +3285,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 675ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 775ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_column" class="cursor-pointer select-none">edit column</span>
                   
@@ -2994,7 +3442,7 @@
           
             
               <!-- Method description -->
-              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 700ms">
+              <div class="flex flex-row gap-2 method-on-load" style="animation-delay: 800ms">
                 <div class="flex flex-col rounded-md desktop:text-2xl tablet:text-xl mobile:text-base w-1/3 bg-white/[0.01] gap-4 p-4">
                   <span id="edit_desk_by_id" class="cursor-pointer select-none">edit desk by id</span>
                   

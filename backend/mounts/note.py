@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from time import time
 
+import pymongo
 from fastapi import FastAPI, Request
 
 from ..exceptions import Error
@@ -31,13 +32,16 @@ async def create_new_note(data: CreateNote, access_token: str):
     """
     u = user.find_one({'access_token': access_token})
     nid = note.estimated_document_count()
+    if nid != 0:
+        n = note.find_one({}, sort=[('_id', pymongo.DESCENDING)])
+        nid = n['nid'] + 1
     new_note = {
         'nid': nid,
         'title': data.title,
         'author': u['uid'],
         'data': '',
         'cover': '',
-        'gradient': [''],
+        'gradient': ['#8A2387', '#E94057', '#F27121'],
         'public': '',
         'created_at': time(),
         'edited_at': -1,
@@ -110,6 +114,109 @@ async def share_note(note_id: int, access_token: str, note_name: str):
     if note_name.startswith('id'):
         return Error.NoteCantStartsWithId
     note.update_one({'nid': note_id}, {'$set': {'public': note_name}})
+    return {'response': 'success'}
+
+
+@note_app.patch('/unshare')
+async def unshare_note(note_id: int, access_token: str):
+    """
+    Unshares note by `note_id`
+
+    :param note_id: note ID
+    :param access_token: user token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = note.find_one({'nid': note_id})
+    if n is None:
+        return Error.NoteIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    note.update_one({'nid': note_id}, {'$set': {'public': ''}})
+    return {'response': 'success'}
+
+
+@note_app.patch('/favorite')
+async def add_note_to_favorite(note_id: int, access_token: str):
+    """
+    Toggles note favorite
+
+    :param note_id: note ID
+    :param access_token: user token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = note.find_one({'nid': note_id})
+    if n is None:
+        return Error.NoteIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    if note_id in u['notes_favorite']:
+        note.update_one({'nid': note_id}, {'$pull': {'notes_favorite': {'$eq': note_id}}})
+        return {'response': False}
+    note.update_one({'nid': note_id}, {'$push': {'notes_favorite': note_id}})
+    return {'response': True}
+
+
+@note_app.delete('/id{note_id}')
+async def add_note_to_favorite(note_id: int, access_token: str):
+    """
+    Moves note into trash or delete it.
+
+    :param note_id: note ID
+    :param access_token: user token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = note.find_one({'nid': note_id})
+    if n is None:
+        return Error.NoteIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    if note_id not in u['notes'] and note_id not in u['notes_trash']:
+        return Error.NoteIsNotExists
+    if note_id in u['notes']:
+        user.update_one(
+            {'uid': u['uid']}, {'$push': {'notes_trash': note_id}}
+        )
+        user.update_one(
+            {'uid': u['uid']}, {'$pull': {'notes': note_id}}
+        )
+    else:
+        user.update_one(
+            {'uid': u['uid']}, {'$pull': {'notes_trash': note_id}}
+        )
+        note.delete_one({'nid': note_id})
+    return {'response': 'success'}
+
+
+@note_app.patch('/restore{note_id}')
+async def add_note_to_favorite(note_id: int, access_token: str):
+    """
+    Restores note from trash
+
+    :param note_id: note ID
+    :param access_token: user token
+    """
+    u = user.find_one({'access_token': access_token})
+    if u is None:
+        return Error.AccessDenied
+    n = note.find_one({'nid': note_id})
+    if n is None:
+        return Error.NoteIsNotExists
+    if n['author'] != u['uid']:
+        return Error.AccessDenied
+    if note_id not in u['notes_trash']:
+        return Error.NoteIsNotExists
+    user.update_one(
+        {'uid': u['uid']}, {'$pull': {'notes_trash': note_id}}
+    )
+    user.update_one(
+        {'uid': u['uid']}, {'$push': {'notes': note_id}}
+    )
     return {'response': 'success'}
 
 
