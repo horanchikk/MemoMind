@@ -53,6 +53,9 @@ async def create_new_user(data: SignUpUser):
         'email': data.email,
         'notes': [],
         'desks': [],
+        'font': '',
+        'compact': False,
+        'small_text': False,
         'notes_favorite': [],
         'desks_favorite': [],
         'notes_trash': [],
@@ -96,6 +99,35 @@ async def edit_user_profile(data: EditUserProfile, access_token: str):
         }}
     )
     return {'response': {'access_token': token}}
+
+
+@user_app.patch('/font')
+async def change_font(font: str, access_token: str):
+    """
+    Changes font in all notes and desks
+    """
+    if font not in ['default', 'serif', 'mono']:
+        return Error.CanNotSetThisFont
+    user.update_one({'access_token': access_token}, {'$set': {'font': font}})
+    return {'response': 'success'}
+
+
+@user_app.patch('/compact')
+async def change_font(value: bool, access_token: str):
+    """
+    Toggles compact view
+    """
+    user.update_one({'access_token': access_token}, {'$set': {'compact': value}})
+    return {'response': 'success'}
+
+
+@user_app.patch('/small_text')
+async def change_font(value: bool, access_token: str):
+    """
+    Toggles text size
+    """
+    user.update_one({'access_token': access_token}, {'$set': {'small_text': value}})
+    return {'response': 'success'}
 
 
 @user_app.get('/id{uid}')

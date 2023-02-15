@@ -19,6 +19,7 @@ class Error:
     NoteNameIsExits = error("This note name already is used", status.HTTP_409_CONFLICT)
     DeskNameIsExits = error("This desk name already is used", status.HTTP_409_CONFLICT)
     AccessDenied = error("Access denied", status.HTTP_403_FORBIDDEN)
+    CanNotSetThisFont = error("Can not to set this font", status.HTTP_403_FORBIDDEN)
     LoginOrPasswordIsNotCorrect = error("Login or password is not correct.", status.HTTP_400_BAD_REQUEST)
     PasswordIsNotCorrect = error("Password is not correct", status.HTTP_400_BAD_REQUEST)
     IndexError = error("Index error", status.HTTP_400_BAD_REQUEST)

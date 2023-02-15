@@ -82,6 +82,9 @@ class UserModel(BaseModel):
     email: str
     password: str
     access_token: str
+    font: str
+    compact: bool
+    small_text: bool
     notes: list[int]
     desks: list[int]
     notes_favorite: list[int]
