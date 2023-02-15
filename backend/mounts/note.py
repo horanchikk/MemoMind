@@ -68,7 +68,7 @@ async def get_note_by_id(nid: int, access_token: str = ''):
         return Error.NoteIsNotExists
     if not n['public'] and n['author'] != u['uid']:
         return Error.AccessDenied
-    return {'response': NoteModel(**n)}
+    return {'response': NoteModel(**n).dict()}
 
 
 @note_app.patch('/id{nid}')
