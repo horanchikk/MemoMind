@@ -45,6 +45,7 @@ async def create_new(data: CreateDesk, access_token: str):
         'title': data.title,
         'author': u['uid'],
         'columns': [],
+        'public': '',
         'labels': [
             {'title': 'Срочно', 'color': '#F04D64'},
             {'title': 'Запланировано', 'color': '#654A87'},
