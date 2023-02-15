@@ -78,6 +78,7 @@ async def log_in_user(data: LogInUser):
     if not check_password_hash(u['password'], data.password):
         return Error.LoginOrPasswordIsNotCorrect
     return {'response': {
+        'id': u['uid'],
         'access_token': u['access_token']
     }}
 
