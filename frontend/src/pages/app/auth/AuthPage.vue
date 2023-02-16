@@ -356,6 +356,7 @@ const router = useRouter();
 import MMButton from "../../../components/MMButton.vue";
 import MMInput from "../../../components/MMInput.vue";
 import { useUser } from "../../../store/user";
+import { MMAPI } from "../../../mixins/api";
 
 const inputData = reactive<{
   login: string;
@@ -412,23 +413,18 @@ async function auth(
     router.push("/app/goYandex");
   } else if (mode === "in") {
     config.loading = true;
-    const inToken = await useUser().config.api.logIn(
-      inputData.login,
-      inputData.password
-    );
+    const inToken = await MMAPI.logIn(inputData.login, inputData.password);
     if (inToken.message) {
       config.exception = inToken.message;
     } else {
       useUser().config.username = inputData.login;
-      useUser().config.user = await useUser().config.api.getUserById(
-        inToken.id
-      );
+      useUser().config.user = await MMAPI.getUserById(inToken.id);
       router.push("/app");
     }
     config.loading = false;
   } else if (mode === "up") {
     config.loading = true;
-    const upToken = await useUser().config.api.registerUser(
+    const upToken = await MMAPI.registerUser(
       inputData.login,
       inputData.password,
       inputData.firstName,
@@ -439,9 +435,7 @@ async function auth(
       config.exception = upToken.message;
     } else {
       useUser().config.username = inputData.login;
-      useUser().config.user = await useUser().config.api.getUserById(
-        upToken.id
-      );
+      useUser().config.user = await MMAPI.getUserById(upToken.id);
       router.push("/app");
     }
     config.loading = false;
