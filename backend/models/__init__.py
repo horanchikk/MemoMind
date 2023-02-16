@@ -76,6 +76,7 @@ class CreateColumnCard(BaseModel):
 
 
 class UserModel(BaseModel):
+    uid: int
     first_name: str
     last_name: str
     login: str
