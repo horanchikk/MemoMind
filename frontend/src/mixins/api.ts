@@ -66,14 +66,14 @@ export class MMAPI {
         firstName: string,
         lastName: string,
         email: string
-    ): Promise<RegisterToken> {
+    ): Promise<UserToken> {
         return await this.POST(`${this.USER_URL}/register`, {
             first_name: firstName,
             last_name: lastName,
             password: password,
             email: email,
             login: login,
-        }) as RegisterToken;
+        }) as UserToken;
     }
 
     /**
@@ -204,7 +204,7 @@ export class MMAPI {
      *
      * Returns true when added to favorite and false otherwise.
      */
-    public async toggleFavorite(noteId: number): Promise<boolean | MMError> {
+    public async toggleFavoriteNote(noteId: number): Promise<boolean | MMError> {
         return await MMAPI.PATCH(
             `${MMAPI.NOTE_URL}/favorite?access_token=${this.access_token}&note_id=${noteId}`
         );
@@ -326,6 +326,163 @@ export class MMAPI {
             `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}?access_token=${this.access_token}`
         ) as DeskColumn;
     }
+
+    /**
+     * Edits label by label index
+     */
+    public async editLabel(
+        deskId: number,
+        labelIndex: number,
+        title: string,
+        color: string
+    ): Promise<string | MMError> {
+        return await MMAPI.PATCH(
+            `${MMAPI.DESK_URL}/id${deskId}/label${labelIndex}?access_token=${this.access_token}`, {
+                title: title,
+                color: color
+            }
+        )
+    }
+
+    /**
+     * Moves column in desk
+     */
+    public async moveColumn(
+        deskId: number,
+        columnIndex: number,
+        newColumnIndex: number
+    ): Promise<string | MMError> {
+        return await MMAPI.PATCH(
+            `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}/move?access_token=${this.access_token}&new_cid=${newColumnIndex}`
+        );
+    }
+
+    /**
+     * Moves column card in desk
+     */
+    public async moveColumnCard(
+        deskId: number,
+        columnIndex: number,
+        newColumnIndex: number,
+        cardIndex: number,
+        newCardIndex: number
+    ): Promise<string | MMError> {
+        return await MMAPI.PATCH(
+            `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}/card${cardIndex}/move?access_token=${this.access_token}&new_cid=${newColumnIndex}&new_card_index=${newCardIndex}`
+        );
+    }
+
+    /**
+     * Edits column card
+     */
+    public async editColumnCard(
+        deskId: number,
+        columnIndex: number,
+        cardIndex: number,
+        title: string,
+        description: string = '',
+        labels: Array<string> = [],
+        properties: Array<string> = []
+    ): Promise<string | MMError> {
+        return await MMAPI.PATCH(
+            `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}/card${cardIndex}?access_token=${this.access_token}`, {
+                title: title,
+                description: description,
+                labels: labels,
+                properties: properties
+            }
+        );
+    }
+
+    /**
+     * Edits column
+     */
+    public async editColumn(
+        deskId: number,
+        columnIndex: number,
+        title: string,
+    ): Promise<string | MMError> {
+        return await MMAPI.PATCH(
+            `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}?access_token=${this.access_token}`, {
+                title: title
+            }
+        );
+    }
+
+    /**
+     * Shares desk and makes it public
+     *
+     * Returns "success".
+     */
+    public async shareDesk(
+        deskId: number,
+        deskName: string
+    ): Promise<string | MMError> {
+        return await MMAPI.PATCH(
+            `${MMAPI.DESK_URL}/share?access_token=${this.access_token}&desk_id=${deskId}&desk_name=${deskName}`
+        );
+    }
+
+    /**
+     * Unshares desk and makes it public
+     *
+     * Returns "success".
+     */
+    public async unshareDesk(
+        deskId: number
+    ): Promise<string | MMError> {
+        return await MMAPI.PATCH(
+            `${MMAPI.DESK_URL}/unshare?access_token=${this.access_token}&desk_id=${deskId}`
+        );
+    }
+
+    /**
+     * Adds/removes in/from favorite
+     *
+     * Returns true when marked as favorite or false otherwise
+     */
+    public async toggleFavoriteDesk(
+        deskId: number
+    ): Promise<boolean | MMError> {
+        return await MMAPI.PATCH(
+            `${MMAPI.DESK_URL}/favorite?access_token=${this.access_token}&desk_id=${deskId}`
+        );
+    }
+
+    /**
+     * Deletes and puts desk into trash or remove it forever
+     *
+     * Returns "success".
+     */
+    public async deleteDesk(
+        deskId: number
+    ): Promise<string | MMError> {
+        return await MMAPI.DELETE(
+            `${MMAPI.DESK_URL}/id${deskId}?access_token=${this.access_token}`
+        );
+    }
+
+    /**
+     * Restores desk from trash
+     *
+     * Returns "success".
+     */
+    public async restoreDesk(
+        deskId: number
+    ): Promise<string | MMError> {
+        return await MMAPI.PATCH(
+            `${MMAPI.DESK_URL}/restore${deskId}?access_token=${this.access_token}`
+        );
+    }
+
+    /**
+     * Returns public desk by its public name
+     */
+    public static async getPublicDesk(
+        deskName: string
+    ): Promise<Desk> {
+        return await MMAPI.GET(`${MMAPI.DESK_URL}/${deskName}`) as Desk;
+    }
 }
 
 
@@ -334,10 +491,8 @@ export interface MMError {
     code: number
 }
 export interface UserToken extends MMError{
-    access_token: string
-}
-export interface RegisterToken extends UserToken {
     id: number
+    access_token: string
 }
 export interface CreatedNoteId extends MMError {
     id: number
