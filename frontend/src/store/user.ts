@@ -2,16 +2,17 @@ import { reactive } from "vue";
 import { defineStore } from "pinia";
 
 import type { User } from "../mixins/api";
+import { MMAPI } from "../mixins/api";
 
 export const useUser = defineStore("useUser", () => {
   const config = reactive<{
-    token: string;
+    api: MMAPI;
     username: string;
-    user: User | "";
+    user: User;
   }>({
-    token: "",
+    api: new MMAPI(),
     username: "",
-    user: "",
+    user: {},
   });
 
   return { config };

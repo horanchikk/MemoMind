@@ -43,18 +43,67 @@
         </g>
       </g>
     </svg>
+    <div
+      class="flex flex-col gap-5 text-2xl justify-center items-center"
+      v-show="exception"
+    >
+      <p class="text-red-500">{{ exception }}</p>
+      <MMButton @click="router.push('/app/auth/signIn')"
+        >Вернуться к авторизации</MMButton
+      >
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-const router = useRouter();
+import { useUser } from "../../../store/user";
+import MMButton from "../../../components/MMButton.vue";
+import { ref } from "vue";
+import { MMAPI } from "../../../mixins/api";
+import axios from "axios";
 
+const router = useRouter();
 let token = /access_token=([^&]+)/.exec(document.location.hash)![1];
+const exception = ref();
 
 if (token !== undefined) {
-  localStorage.setItem("yaToken", token);
-  router.push("/app");
+  axios
+    .get(
+      "https://login.yandex.ru/info?format=json&jwt_secret=73a87743fe2e406d96d537209a21c1c0&oauth_token=" +
+        token
+    )
+    .then(async (res) => {
+      let response = await MMAPI.logIn(res.data.emails[0], res.data.client_id);
+      console.log(res.data);
+
+      if (response.code === 404) {
+        // incorrect login/pass
+        exception.value = response.message;
+      } else {
+        // user not created
+        if (response.code === 404)
+          response = await MMAPI.registerUser(
+            res.data.emails[0],
+            res.data.client_id,
+            res.data.first_name,
+            res.data.last_name,
+            res.data.emails[0]
+          );
+        // successfully logged in
+        useUser().config.api.setToken(response.access_token);
+        useUser().config.username = res.data.emails[0];
+        console.log(response);
+        console.log(await MMAPI.getUserById(response.id));
+
+        useUser().config.user = await MMAPI.getUserById(response.id);
+        router.push("/app");
+      }
+    })
+    .catch((err) => console.error(err));
+
+  // signUp-ya
+  // app
 } else {
   router.push("/");
 }

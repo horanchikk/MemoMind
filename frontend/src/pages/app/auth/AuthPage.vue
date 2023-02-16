@@ -94,6 +94,101 @@
         </div>
       </form>
       <form
+        v-else-if="config.params === 'signUp-ya'"
+        @submit.prevent="auth('up')"
+        class="flex flex-col gap-5 justify-center items-center p-5 w-80 text-lg font-bold rounded-md shadow-sm select-none shadow-black show-up"
+      >
+        <p>Регистрация</p>
+
+        <div class="flex flex-col gap-5">
+          <MMInput
+            type="text"
+            v-model="inputData.firstName"
+            placeholder="Имя"
+            autofocus
+          />
+          <MMInput
+            type="text"
+            v-model="inputData.lastName"
+            placeholder="Фамилия"
+          />
+          <MMInput type="email" v-model="inputData.email" placeholder="Почта" />
+          <MMInput type="text" v-model="inputData.login" placeholder="Логин" />
+          <MMInput
+            type="password"
+            v-model="inputData.password"
+            placeholder="Пароль"
+          />
+          <p
+            v-show="config.exception"
+            class="text-[#f80000] text-sm text-center"
+          >
+            {{ config.exception }}
+          </p>
+          <MMButton type="submit" class="flex items-center justify-center"
+            ><p v-if="!config.loading">Зарегистрироваться</p>
+            <svg
+              class="self-center"
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              viewBox="0 0 38 38"
+              v-else
+            >
+              <defs>
+                <linearGradient
+                  x1="8.042%"
+                  y1="0%"
+                  x2="65.682%"
+                  y2="23.865%"
+                  id="a"
+                >
+                  <stop stop-color="#fff" stop-opacity="0" offset="0%" />
+                  <stop
+                    stop-color="#fff"
+                    stop-opacity=".631"
+                    offset="63.146%"
+                  />
+                  <stop stop-color="#fff" offset="100%" />
+                </linearGradient>
+              </defs>
+              <g fill="none" fill-rule="evenodd">
+                <g transform="translate(1 1)">
+                  <path
+                    d="M36 18c0-9.94-8.06-18-18-18"
+                    id="Oval-2"
+                    stroke="url(#a)"
+                    stroke-width="2"
+                  >
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      from="0 18 18"
+                      to="360 18 18"
+                      dur="0.9s"
+                      repeatCount="indefinite"
+                    />
+                  </path>
+                  <circle fill="#fff" cx="36" cy="18" r="1">
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      from="0 18 18"
+                      to="360 18 18"
+                      dur="0.9s"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                </g>
+              </g>
+            </svg>
+          </MMButton>
+          <MMButton transparent @click="config.params = 'signIn'"
+            >У вас есть аккаунт?</MMButton
+          >
+        </div>
+      </form>
+      <form
         v-else-if="config.params === 'signUp'"
         @submit.prevent="auth('up')"
         class="flex flex-col gap-5 justify-center items-center p-5 w-80 text-lg font-bold rounded-md shadow-sm select-none shadow-black show-up"
@@ -260,7 +355,6 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 import MMButton from "../../../components/MMButton.vue";
 import MMInput from "../../../components/MMInput.vue";
-import { MMAPI } from "../../../mixins/api";
 import { useUser } from "../../../store/user";
 
 const inputData = reactive<{
@@ -318,19 +412,23 @@ async function auth(
     router.push("/app/goYandex");
   } else if (mode === "in") {
     config.loading = true;
-    const inToken = await MMAPI.logIn(inputData.login, inputData.password);
+    const inToken = await useUser().config.api.logIn(
+      inputData.login,
+      inputData.password
+    );
     if (inToken.message) {
       config.exception = inToken.message;
     } else {
-      useUser().config.token = inToken.access_token;
       useUser().config.username = inputData.login;
-      useUser().config.user = await MMAPI.getUserById(inToken.id);
+      useUser().config.user = await useUser().config.api.getUserById(
+        inToken.id
+      );
       router.push("/app");
     }
     config.loading = false;
   } else if (mode === "up") {
     config.loading = true;
-    const upToken = await MMAPI.registerUser(
+    const upToken = await useUser().config.api.registerUser(
       inputData.login,
       inputData.password,
       inputData.firstName,
@@ -340,9 +438,10 @@ async function auth(
     if (upToken.message) {
       config.exception = upToken.message;
     } else {
-      useUser().config.token = upToken.access_token;
       useUser().config.username = inputData.login;
-      useUser().config.user = await MMAPI.getUserById(upToken.id);
+      useUser().config.user = await useUser().config.api.getUserById(
+        upToken.id
+      );
       router.push("/app");
     }
     config.loading = false;

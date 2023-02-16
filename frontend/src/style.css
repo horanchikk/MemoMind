@@ -54,6 +54,15 @@
   }
 }
 
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .show-up {
   opacity: 0;
   animation: showUp 300ms ease-out;
@@ -75,4 +84,21 @@
   opacity: 0;
   animation: showRight 300ms ease-out;
   animation-fill-mode: forwards;
+}
+
+.popup-enter-active {
+  animation: bounce-in 150ms;
+}
+.popup-leave-active {
+  animation: bounce-in 150ms reverse;
+}
+
+.opacity-enter-active,
+.opacity-leave-active {
+  transition: opacity 150ms ease;
+}
+
+.opacity-enter-from,
+.opacity-leave-to {
+  opacity: 0;
 }

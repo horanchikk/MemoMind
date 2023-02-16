@@ -1,7 +1,9 @@
 <template>
   <!-- eslint-disable -->
   <!-- we'll fix it later -->
-  <header class="flex flex-col px-32 pt-2 w-full text-xl font-semibold h-fit">
+  <header
+    class="flex flex-col px-32 pt-2 w-full text-xl font-semibold h-fit show-down"
+  >
     <div class="flex justify-between items-center px-24 w-full">
       <div class="flex gap-5 justify-between items-center">
         <img src="../assets/icon.svg" class="h-7 w-fit" alt="Icon" />
