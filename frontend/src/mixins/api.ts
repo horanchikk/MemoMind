@@ -1,6 +1,6 @@
-// @ts-ignore
 import axios from "axios";
 
+// methods
 /**
  *
  * Provides working with MemoMind RestAPI
@@ -11,14 +11,14 @@ export class MMAPI {
   private static readonly NOTE_URL = `${MMAPI.API_URL}/note`;
   private static readonly DESK_URL = `${MMAPI.API_URL}/desk`;
 
-  private access_token: string;
+  private static access_token: string;
 
   constructor(access_token: string) {
-    this.access_token = access_token;
+    MMAPI.access_token = access_token;
   }
 
   public setToken(access_token: string) {
-    this.access_token = access_token;
+    MMAPI.access_token = access_token;
   }
 
   private static async GET(url: string): Promise<MMError> {
@@ -113,7 +113,7 @@ export class MMAPI {
     newPass: string
   ): Promise<UserToken> {
     return (await MMAPI.PATCH(
-      `${MMAPI.USER_URL}/edit?access_token=${this.access_token}`,
+      `${MMAPI.USER_URL}/edit?access_token=${MMAPI.access_token}`,
       {
         old_password: old,
         new_password: newPass,
@@ -128,7 +128,7 @@ export class MMAPI {
    */
   public async changeFont(newFont: FontType): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.USER_URL}/font?font=${newFont}&access_token=${this.access_token}`
+      `${MMAPI.USER_URL}/font?font=${newFont}&access_token=${MMAPI.access_token}`
     );
   }
 
@@ -139,7 +139,7 @@ export class MMAPI {
    */
   public async toggleCompact(value: boolean = true): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.USER_URL}/compact?access_token=${this.access_token}&value=${value}`
+      `${MMAPI.USER_URL}/compact?access_token=${MMAPI.access_token}&value=${value}`
     );
   }
 
@@ -152,7 +152,7 @@ export class MMAPI {
     value: boolean = true
   ): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.USER_URL}/small_text?access_token=${this.access_token}&value=${value}`
+      `${MMAPI.USER_URL}/small_text?access_token=${MMAPI.access_token}&value=${value}`
     );
   }
 
@@ -161,7 +161,7 @@ export class MMAPI {
    */
   public async createNote(title: string): Promise<CreatedNoteId> {
     return (await MMAPI.POST(
-      `${MMAPI.NOTE_URL}/?access_token=${this.access_token}`,
+      `${MMAPI.NOTE_URL}/?access_token=${MMAPI.access_token}`,
       {
         title: title,
       }
@@ -173,7 +173,7 @@ export class MMAPI {
    */
   public async getNote(noteId: number): Promise<Note> {
     return (await MMAPI.GET(
-      `${MMAPI.NOTE_URL}/id${noteId}?access_token=${this.access_token}`
+      `${MMAPI.NOTE_URL}/id${noteId}?access_token=${MMAPI.access_token}`
     )) as Note;
   }
 
@@ -182,15 +182,16 @@ export class MMAPI {
    *
    * Returns "success".
    */
-  public async editNote(
+  public static async editNote(
     noteId: number,
     newTitle: string,
     data: string,
     cover: string = "",
     gradient: Array<string> = ["#8A2387", "#E94057", "#F27121"]
   ): Promise<string | MMError> {
+    console.log(MMAPI.access_token)
     return await MMAPI.PATCH(
-      `${MMAPI.NOTE_URL}/id${noteId}?access_token=${this.access_token}`,
+      `${MMAPI.NOTE_URL}/id${noteId}?access_token=${MMAPI.access_token}`,
       {
         title: newTitle,
         data: data,
@@ -210,7 +211,7 @@ export class MMAPI {
     noteName: string
   ): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.NOTE_URL}/share?access_token=${this.access_token}&note_name=${noteName}&note_id=${noteId}`
+      `${MMAPI.NOTE_URL}/share?access_token=${MMAPI.access_token}&note_name=${noteName}&note_id=${noteId}`
     );
   }
 
@@ -221,7 +222,7 @@ export class MMAPI {
    */
   public async unshareNote(noteId: number): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.NOTE_URL}/unshare?access_token=${this.access_token}&note_id=${noteId}`
+      `${MMAPI.NOTE_URL}/unshare?access_token=${MMAPI.access_token}&note_id=${noteId}`
     );
   }
 
@@ -232,7 +233,7 @@ export class MMAPI {
    */
   public async toggleFavoriteNote(noteId: number): Promise<boolean | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.NOTE_URL}/favorite?access_token=${this.access_token}&note_id=${noteId}`
+      `${MMAPI.NOTE_URL}/favorite?access_token=${MMAPI.access_token}&note_id=${noteId}`
     );
   }
 
@@ -243,7 +244,7 @@ export class MMAPI {
    */
   public async deleteNote(noteId: number): Promise<string | MMError> {
     return await MMAPI.DELETE(
-      `${MMAPI.NOTE_URL}/id${noteId}?access_token=${this.access_token}`
+      `${MMAPI.NOTE_URL}/id${noteId}?access_token=${MMAPI.access_token}`
     );
   }
 
@@ -254,7 +255,7 @@ export class MMAPI {
    */
   public async restoreNote(noteId: number): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.NOTE_URL}/restore${noteId}?access_token=${this.access_token}`
+      `${MMAPI.NOTE_URL}/restore${noteId}?access_token=${MMAPI.access_token}`
     );
   }
 
@@ -270,7 +271,7 @@ export class MMAPI {
    */
   public async createDesk(title: string): Promise<CreatedDeskId> {
     return (await MMAPI.POST(
-      `${MMAPI.DESK_URL}/?access_token=${this.access_token}`,
+      `${MMAPI.DESK_URL}/?access_token=${MMAPI.access_token}`,
       {
         title: title,
       }
@@ -282,7 +283,7 @@ export class MMAPI {
    */
   public async getDesk(deskId: number): Promise<Desk> {
     return (await MMAPI.GET(
-      `${MMAPI.DESK_URL}/id${deskId}?access_token=${this.access_token}`
+      `${MMAPI.DESK_URL}/id${deskId}?access_token=${MMAPI.access_token}`
     )) as Desk;
   }
 
@@ -295,7 +296,7 @@ export class MMAPI {
     color: string
   ): Promise<CreatedLabelIndex> {
     return (await MMAPI.POST(
-      `${MMAPI.DESK_URL}/label?access_token=${this.access_token}`,
+      `${MMAPI.DESK_URL}/label?access_token=${MMAPI.access_token}`,
       {
         did: deskId,
         title: title,
@@ -312,7 +313,7 @@ export class MMAPI {
     title: string
   ): Promise<CreatedColumnIndex> {
     return (await MMAPI.POST(
-      `${MMAPI.DESK_URL}/column?access_token=${this.access_token}`,
+      `${MMAPI.DESK_URL}/column?access_token=${MMAPI.access_token}`,
       {
         did: deskId,
         title: title,
@@ -332,7 +333,7 @@ export class MMAPI {
     properties: Array<object> = []
   ): Promise<CreatedColumnCardIndex> {
     return (await MMAPI.POST(
-      `${MMAPI.DESK_URL}/column-card?access_token=${this.access_token}`,
+      `${MMAPI.DESK_URL}/column-card?access_token=${MMAPI.access_token}`,
       {
         did: deskId,
         cid: columnIndex,
@@ -352,7 +353,7 @@ export class MMAPI {
     labelIndex: number
   ): Promise<DeskCardLabel> {
     return (await MMAPI.GET(
-      `${MMAPI.DESK_URL}/id${deskId}/label${labelIndex}?access_token=${this.access_token}`
+      `${MMAPI.DESK_URL}/id${deskId}/label${labelIndex}?access_token=${MMAPI.access_token}`
     )) as DeskCardLabel;
   }
 
@@ -364,7 +365,7 @@ export class MMAPI {
     columnIndex: number
   ): Promise<DeskColumn> {
     return (await MMAPI.GET(
-      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}?access_token=${this.access_token}`
+      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}?access_token=${MMAPI.access_token}`
     )) as DeskColumn;
   }
 
@@ -378,7 +379,7 @@ export class MMAPI {
     color: string
   ): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.DESK_URL}/id${deskId}/label${labelIndex}?access_token=${this.access_token}`,
+      `${MMAPI.DESK_URL}/id${deskId}/label${labelIndex}?access_token=${MMAPI.access_token}`,
       {
         title: title,
         color: color,
@@ -395,7 +396,7 @@ export class MMAPI {
     newColumnIndex: number
   ): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}/move?access_token=${this.access_token}&new_cid=${newColumnIndex}`
+      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}/move?access_token=${MMAPI.access_token}&new_cid=${newColumnIndex}`
     );
   }
 
@@ -410,7 +411,7 @@ export class MMAPI {
     newCardIndex: number
   ): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}/card${cardIndex}/move?access_token=${this.access_token}&new_cid=${newColumnIndex}&new_card_index=${newCardIndex}`
+      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}/card${cardIndex}/move?access_token=${MMAPI.access_token}&new_cid=${newColumnIndex}&new_card_index=${newCardIndex}`
     );
   }
 
@@ -427,7 +428,7 @@ export class MMAPI {
     properties: Array<string> = []
   ): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}/card${cardIndex}?access_token=${this.access_token}`,
+      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}/card${cardIndex}?access_token=${MMAPI.access_token}`,
       {
         title: title,
         description: description,
@@ -446,7 +447,7 @@ export class MMAPI {
     title: string
   ): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}?access_token=${this.access_token}`,
+      `${MMAPI.DESK_URL}/id${deskId}/column${columnIndex}?access_token=${MMAPI.access_token}`,
       {
         title: title,
       }
@@ -463,7 +464,7 @@ export class MMAPI {
     deskName: string
   ): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.DESK_URL}/share?access_token=${this.access_token}&desk_id=${deskId}&desk_name=${deskName}`
+      `${MMAPI.DESK_URL}/share?access_token=${MMAPI.access_token}&desk_id=${deskId}&desk_name=${deskName}`
     );
   }
 
@@ -474,7 +475,7 @@ export class MMAPI {
    */
   public async unshareDesk(deskId: number): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.DESK_URL}/unshare?access_token=${this.access_token}&desk_id=${deskId}`
+      `${MMAPI.DESK_URL}/unshare?access_token=${MMAPI.access_token}&desk_id=${deskId}`
     );
   }
 
@@ -485,7 +486,7 @@ export class MMAPI {
    */
   public async toggleFavoriteDesk(deskId: number): Promise<boolean | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.DESK_URL}/favorite?access_token=${this.access_token}&desk_id=${deskId}`
+      `${MMAPI.DESK_URL}/favorite?access_token=${MMAPI.access_token}&desk_id=${deskId}`
     );
   }
 
@@ -496,7 +497,7 @@ export class MMAPI {
    */
   public async deleteDesk(deskId: number): Promise<string | MMError> {
     return await MMAPI.DELETE(
-      `${MMAPI.DESK_URL}/id${deskId}?access_token=${this.access_token}`
+      `${MMAPI.DESK_URL}/id${deskId}?access_token=${MMAPI.access_token}`
     );
   }
 
@@ -507,7 +508,7 @@ export class MMAPI {
    */
   public async restoreDesk(deskId: number): Promise<string | MMError> {
     return await MMAPI.PATCH(
-      `${MMAPI.DESK_URL}/restore${deskId}?access_token=${this.access_token}`
+      `${MMAPI.DESK_URL}/restore${deskId}?access_token=${MMAPI.access_token}`
     );
   }
 
@@ -518,6 +519,8 @@ export class MMAPI {
     return (await MMAPI.GET(`${MMAPI.DESK_URL}/${deskName}`)) as Desk;
   }
 }
+
+// types
 
 export interface MMError {
   message: string;

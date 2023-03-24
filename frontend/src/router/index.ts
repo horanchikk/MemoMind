@@ -8,6 +8,7 @@ import HomePage from "../pages/HomePage.vue";
 
 import AppPage from "../pages/app/AppPage.vue";
 
+
 import type { RouteRecordRaw } from "vue-router";
 
 const routes = <RouteRecordRaw[]>[

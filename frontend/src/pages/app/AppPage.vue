@@ -1,5 +1,5 @@
 <template>
-  <main class="flex w-full h-full" v-if="user.config.api !== null">
+  <main class="flex w-full h-full" v-if="user.config.username">
     <!-- popup -->
     <Transition name="opacity" mode="out-in">
       <div
@@ -37,7 +37,7 @@
               </svg>
             </div>
             <main class="flex-auto">
-              <section class="flex justify-between gap-5" v-show="modal.add">
+              <section v-show="modal.add" class="flex justify-between gap-5">
                 <div class="p-2">
                   <MMButton
                     :transparent="false"
@@ -60,6 +60,10 @@
                     >Создать доску</MMButton
                   >
                 </div>
+              </section>
+              <section v-show="!modal.add" class="font-bold p-5">
+                <!-- TODO -->
+                Настройки аккаунта в разработке...
               </section>
             </main>
           </div>
@@ -129,31 +133,37 @@
       </button>
     </div>
     <!-- main section -->
-    <div class="flex-auto h-full flex flex-col">
+    <div class="flex-auto h-full flex flex-col" v-if="currentPage">
       <!-- header? -->
       <header
-        class="w-full h-16 text-xl flex justify-between items-center px-16 bg-white show-down"
+        class="w-full h-16 text-xl flex justify-between items-center px-8 bg-white show-down"
       >
-        <p class="cursor-default">{{ title }}</p>
+        <div class="flex gap-4 cursor-default">
+          <p class="text-2xl">😀</p>
+          <p class="cursor-default">{{ currentPage.title }}</p>
+        </div>
         <div class="flex gap-5">
-          <!-- <img
-            class="w-7 h-7 opacity-50 cursor-pointer hover:opacity-75 transition-all"
+          <img
+            class="w-6 h-6 opacity-50 cursor-pointer hover:opacity-75 transition-all"
             src="../../assets/star1.svg"
             alt="star"
           /><img
             src="../../assets/exportsquare.svg"
             alt="exportsquare"
-            class="w-7 h-7 opacity-50 cursor-pointer hover:opacity-75 transition-all"
+            class="w-6 h-6 opacity-50 cursor-pointer hover:opacity-75 transition-all"
           /><img
             src="../../assets/maximize4.svg"
-            class="w-7 h-7 opacity-50 cursor-pointer hover:opacity-75 transition-all"
+            class="w-6 h-6 opacity-50 cursor-pointer hover:opacity-75 transition-all"
             alt="maximize"
           /><img
             src="../../assets/setting2.svg"
-            class="w-7 h-7 opacity-50 cursor-pointer hover:opacity-75 transition-all"
+            class="w-6 h-6 opacity-50 cursor-pointer hover:opacity-75 transition-all"
             alt="setting2"
-            @click="modal.show = !modal.show"
-          /> -->
+            @click="
+              modal.show = !modal.show;
+              modal.title = 'Настройки аккаунта';
+            "
+          />
         </div>
       </header>
       <main
@@ -162,7 +172,18 @@
         <!-- gradient -->
         <div
           class="h-1/3 w-full bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
-        ></div>
+        >
+          <div
+            class="w-full h-full flex justify-end p-6 opacity-0 hover:opacity-100 transition-all"
+          >
+            <img
+              src="../../assets/trash.svg"
+              alt="Корзина"
+              class="h-7 w-7 cursor-pointer"
+              @click="removePage(currentPage.nid)"
+            />
+          </div>
+        </div>
         <!-- smile of note -->
         <div class="text-end w-96 h-0.5 text-4xl text-align-center -my-5">
           😀
@@ -180,25 +201,31 @@
             <input
               type="text"
               class="h-fit w-fit outline-0 border-0 opacity-80 focus:opacity-100 transition-all text-3xl"
-              v-model="title"
+              placeholder="Название страницы"
+              v-model="currentPage.title"
             />
           </div>
           <!-- here is md -->
           <!-- https://www.youtube.com/watch?v=lXc0c1n6O-g -->
           <textarea
             class="flex-auto w-full outline-0 border-0 opacity-60 focus:opacity-100 transition-all text-xl"
-            v-model="data"
-          >
-            Напишите что-нибудь здесь
-          </textarea>
+            placeholder="Напишите что-нибудь здесь"
+            v-model="currentPage.data"
+          ></textarea>
         </div>
       </main>
+    </div>
+    <div
+      class="flex-auto text-xl flex items-center justify-center bg-[#F2F2F2]"
+      v-else
+    >
+      Выберите страницу/доску
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, ref, computed } from "vue";
+import { reactive, onMounted, ref, toRaw } from "vue";
 import { useRouter } from "vue-router";
 import { onClickOutside } from "@vueuse/core";
 
@@ -214,9 +241,6 @@ import type { Note, Desk } from "../../mixins/api";
 const currentType = ref(null);
 const mdText = ref("");
 const popupWindow = ref(null);
-
-const title = ref("Введите название");
-const data = ref("Введите какую-либо информацию)");
 
 // interface addModal {
 //   show: boolean;
@@ -241,12 +265,22 @@ const router = useRouter();
 const notes: Ref<Array<Note>> = ref([]);
 const desks: Ref<Array<Desk>> = ref([]);
 
-const currentPage = <any>ref(null);
+const currentPage: Ref<Note | Desk | undefined> = ref(undefined);
+
+if (!user.config.username) {
+  router.push("/app/auth/signIn");
+} else {
+  console.log(user.config.username);
+}
+
+onMounted(() => {
+  getAll();
+});
 
 async function createNote() {
   const note = await user.config.api.getNote(
     (
-      await user.config.api.createNote("Название страницы")
+      await user.config.api.createNote("")
     ).id
   );
   console.log(user.config.user);
@@ -255,19 +289,38 @@ async function createNote() {
   notes.value.push(note);
 }
 
+async function removePage(nid) {
+  await user.config.api.deleteNote(nid);
+  selectNote(currentPage.value.nid - 1);
+  getAll();
+}
+
 async function createDesk() {
   const desk = await user.config.api.getDesk(
     (
-      await user.config.api.createDesk("Название доски")
+      await user.config.api.createDesk("")
     ).did
   );
-  console.log(user.config.user);
   user.config.user = await MMAPI.getUserById(user.config.user.uid);
-  console.log(desk);
   desks.value.push(desk);
 }
 
 async function selectNote(noteId: number) {
+  if (currentPage.value) {
+    await MMAPI.editNote(
+      currentPage.value.nid,
+      currentPage.value.title,
+      currentPage.value.data,
+      currentPage.value.cover,
+      currentPage.value.gradient
+    );
+    notes.value[
+      notes.value.indexOf(
+        notes.value.find((n) => n.nid == currentPage.value.nid)
+      )
+    ].title = currentPage.value.title;
+    getAll();
+  }
   currentPage.value = await user.config.api.getNote(noteId);
 }
 
@@ -276,14 +329,26 @@ async function selectDesk(deskId: number) {
 }
 
 function getAll() {
+  notes.value = [];
+
   user.config.user.notes.forEach((noteId) => {
     user.config.api.getNote(noteId).then((note) => {
       notes.value.push(note);
     });
+
+    notes.value.sort((prevNote, nextNote) => {
+      if (prevNote.nid < nextNote.nid) {
+        return -1;
+      }
+      if (prevNote.nid > nextNote.nid) {
+        return 1;
+      }
+      return 0;
+    });
   });
   user.config.user.desks.forEach((deskId) => {
     user.config.api.getDesk(deskId).then((desk) => {
-      desks.value.push(desk);
+      // desks.value.push(desk);
     });
   });
 }
@@ -292,13 +357,6 @@ onClickOutside(popupWindow, () => {
   if (modal.show) {
     modal.show = !modal.show;
   }
-});
-
-onMounted(() => {
-  if (user.config.api === null) {
-    router.push("/app/auth/signIn");
-  }
-  getAll();
 });
 </script>
 

@@ -247,6 +247,7 @@
     <div
       class="flex flex-col items-center gap-10 px-[500px] justify-center w-screen py-20 bg-lwhite"
     >
+      <p class="font-bold text-5xl text-center">Чего же вы ждёте? <span class="text-primary">Вперёд!</span></p>
       <router-link
         to="/app/auth/signUp"
         class="px-8 py-4 font-bold text-2xl -mb-8 rounded-xl border-[3px] border-black hover:border-white hover:text-white hover:bg-black active:scale-95 transition-all"

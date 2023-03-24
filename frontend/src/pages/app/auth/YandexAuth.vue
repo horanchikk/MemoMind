@@ -43,15 +43,6 @@
         </g>
       </g>
     </svg>
-    <div
-      class="flex flex-col gap-5 text-2xl justify-center items-center"
-      v-show="exception"
-    >
-      <p class="text-red-500">{{ exception }}</p>
-      <MMButton @click="router.push('/app/auth/signIn')"
-        >Вернуться к авторизации</MMButton
-      >
-    </div>
   </div>
 </template>
 
@@ -76,29 +67,25 @@ if (token !== undefined) {
     .then(async (res) => {
       let response = await MMAPI.logIn(res.data.emails[0], res.data.client_id);
       console.log(res.data);
+      console.log(response)
 
-      if (response.code === 404) {
-        // incorrect login/pass
-        exception.value = response.message;
-      } else {
-        // user not created
-        if (response.code === 404)
-          response = await MMAPI.registerUser(
-            res.data.emails[0],
-            res.data.client_id,
-            res.data.first_name,
-            res.data.last_name,
-            res.data.emails[0]
-          );
-        // successfully logged in
-        useUser().config.api.setToken(response.access_token);
-        useUser().config.username = res.data.emails[0];
-        console.log(response);
-        console.log(await MMAPI.getUserById(response.id));
+      // user not created
+      if (response.code === 404)
+        response = await MMAPI.registerUser(
+          res.data.emails[0],
+          res.data.client_id,
+          res.data.first_name,
+          res.data.last_name,
+          res.data.emails[0]
+        );
+      // successfully logged in
+      useUser().config.api.setToken(response.access_token);
+      useUser().config.username = res.data.emails[0];
+      console.log(response);
+      console.log(await MMAPI.getUserById(response.id));
 
-        useUser().config.user = await MMAPI.getUserById(response.id);
-        router.push("/app");
-      }
+      useUser().config.user = await MMAPI.getUserById(response.id);
+      router.push("/app");
     })
     .catch((err) => console.error(err));
 
